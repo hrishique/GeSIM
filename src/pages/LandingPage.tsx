@@ -1,28 +1,29 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4 } from 'lucide-react';
+import WalletConnectButton from '@/components/WalletConnectButton';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
   
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Here you would handle the email submission
-    console.log("Email submitted:", email);
-    // Clear the input
-    setEmail('');
-    // Could show a success message
+  const handleWalletConnect = (walletAddress: string) => {
+    console.log("Wallet connected:", walletAddress);
+    navigate('/dashboard');
   };
   
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
+      {/* Header with Wallet Connect */}
+      <header className="container mx-auto py-4 px-4 flex justify-end">
+        <div className="w-48">
+          <WalletConnectButton onConnect={handleWalletConnect} />
+        </div>
+      </header>
+      
       {/* Hero Section */}
-      <section className="py-20 px-4 md:px-6 relative">
+      <section className="py-16 px-4 md:px-6 relative">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 fade-in">
             <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
@@ -32,30 +33,19 @@ const LandingPage: React.FC = () => {
               Connect seamlessly across borders with a single decentralized eSIM powered by Solana blockchain technology.
             </p>
             
-            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-grow"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <Button type="submit" className="whitespace-nowrap">
-                Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </form>
-            
-            <div className="pt-4">
+            <div className="pt-4 flex flex-wrap gap-4">
               <Button 
                 onClick={() => navigate('/connect-wallet')}
                 variant="outline"
-                className="mr-4"
               >
                 Connect Wallet
               </Button>
-              <Button onClick={() => navigate('/plans')}>
-                View Plans
+              <Button 
+                onClick={() => navigate('/dashboard')} 
+                className="flex items-center gap-2"
+              >
+                Explore App
+                <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -259,27 +249,22 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Final CTA Section */}
+      {/* Final CTA Section - replaced with simpler CTA */}
       <section className="py-20 px-4 md:px-6 relative">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for Global Connectivity?</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Join our waitlist to be the first to experience borderless, blockchain-powered connectivity.
+            Experience borderless, blockchain-powered connectivity with Gesim.
           </p>
           
-          <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <Input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-grow"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <Button type="submit" className="whitespace-nowrap">
-              Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button onClick={() => navigate('/plans')} className="px-8">
+              View Plans <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </form>
+            <Button onClick={() => navigate('/dashboard')} variant="outline" className="px-8">
+              Explore App <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </section>
     </div>

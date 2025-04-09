@@ -1,9 +1,14 @@
 
 import React from 'react';
 import LandingPage from './LandingPage';
+import Layout from '../components/Layout';
 
 const Index = () => {
-  return <LandingPage />;
+  return (
+    <Layout>
+      <LandingPage />
+    </Layout>
+  );
 };
 
 export default Index;
