@@ -1,24 +1,25 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4 } from 'lucide-react';
-import WalletConnectButton from '@/components/WalletConnectButton';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   
-  const handleWalletConnect = (walletAddress: string) => {
-    console.log("Wallet connected:", walletAddress);
-    navigate('/dashboard');
-  };
-  
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
-      {/* Header with Wallet Connect */}
+      {/* Header - Removed Wallet Connect Button */}
       <header className="container mx-auto py-4 px-4 flex justify-end">
         <div className="w-48">
-          <WalletConnectButton onConnect={handleWalletConnect} />
+          <Button 
+            onClick={() => navigate('/connect-wallet')}
+            variant="outline"
+            className="w-full"
+          >
+            Connect Wallet
+          </Button>
         </div>
       </header>
       
@@ -64,10 +65,22 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
       
-      {/* What is eSIM Section */}
+      {/* What is eSIM Section - Enhanced with more description */}
       <section className="py-16 px-4 md:px-6 bg-secondary/50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-16">What is eSIM?</h2>
+          <h2 className="text-3xl font-bold text-center mb-8">What is eSIM?</h2>
+          
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <p className="text-lg text-muted-foreground mb-4">
+              An eSIM (embedded SIM) is a digital SIM that allows you to activate a cellular plan without having to use a physical SIM card. 
+              Instead of inserting a physical card, eSIM technology is built directly into your device.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Gesim takes this technology further by integrating it with blockchain, enabling seamless global connectivity, 
+              secure transactions, and the ability to easily switch between carriers without changing physical SIMs.
+              Your digital identity and connectivity are secured on the Solana blockchain.
+            </p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -142,15 +155,16 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Benefits Section */}
+      {/* Benefits Section - Updated Card Design */}
       <section className="py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16">Benefits of Gesim</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="glass-card">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
                   <DollarSign size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Dynamic Pricing</h3>
@@ -158,9 +172,10 @@ const LandingPage: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className="glass-card">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
                   <BarChart4 size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Pay-As-You-Use</h3>
@@ -168,9 +183,10 @@ const LandingPage: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className="glass-card">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
                   <ArrowRight size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Resell Unused Data</h3>
@@ -178,9 +194,10 @@ const LandingPage: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className="glass-card">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
+                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
                   <Shield size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Secure & Encrypted</h3>
@@ -191,7 +208,7 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Current Locations Section */}
+      {/* Current Locations Section - Updated with better images */}
       <section className="py-16 px-4 md:px-6 bg-secondary/50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-6">Where We're Active</h2>
@@ -201,9 +218,9 @@ const LandingPage: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <Card className="glass-card overflow-hidden">
-              <div className="h-48 w-full overflow-hidden">
+              <div className="h-64 w-full overflow-hidden">
                 <img 
-                  src="/images/dubai.jpg" 
+                  src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
                   alt="Dubai" 
                   className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
                   onError={(e) => {
@@ -221,9 +238,9 @@ const LandingPage: React.FC = () => {
             </Card>
             
             <Card className="glass-card overflow-hidden">
-              <div className="h-48 w-full overflow-hidden">
+              <div className="h-64 w-full overflow-hidden">
                 <img 
-                  src="/images/singapore.jpg" 
+                  src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
                   alt="Singapore" 
                   className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
                   onError={(e) => {
