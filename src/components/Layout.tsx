@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-br from-background via-background to-background/80 -z-10" />
       
-      <main className="flex-grow container mx-auto px-4 pb-20 pt-6 relative z-0">
+      <main className="flex-grow container mx-auto pb-20 pt-6 relative z-0">
         {children}
       </main>
       

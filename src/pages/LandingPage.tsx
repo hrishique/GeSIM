@@ -1,0 +1,289 @@
+
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent } from '@/components/ui/card';
+import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4 } from 'lucide-react';
+
+const LandingPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would handle the email submission
+    console.log("Email submitted:", email);
+    // Clear the input
+    setEmail('');
+    // Could show a success message
+  };
+  
+  return (
+    <div className="min-h-screen w-full overflow-x-hidden">
+      {/* Hero Section */}
+      <section className="py-20 px-4 md:px-6 relative">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6 fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
+              One eSIM for the World
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-md">
+              Connect seamlessly across borders with a single decentralized eSIM powered by Solana blockchain technology.
+            </p>
+            
+            <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                className="flex-grow"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <Button type="submit" className="whitespace-nowrap">
+                Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </form>
+            
+            <div className="pt-4">
+              <Button 
+                onClick={() => navigate('/connect-wallet')}
+                variant="outline"
+                className="mr-4"
+              >
+                Connect Wallet
+              </Button>
+              <Button onClick={() => navigate('/plans')}>
+                View Plans
+              </Button>
+            </div>
+          </div>
+          
+          <div className="relative h-[400px] w-full flex items-center justify-center">
+            <div className="absolute inset-0 rounded-full bg-primary/5 animate-pulse"></div>
+            <div className="absolute h-[300px] w-[300px] rounded-full border border-primary/20 animate-pulse"></div>
+            <div className="absolute h-[200px] w-[200px] rounded-full border border-primary/30 animate-pulse"></div>
+            <div className="relative z-10 w-[180px] h-[280px] bg-gradient-to-br from-card/80 to-card/50 backdrop-blur-md border border-white/10 shadow-xl rounded-3xl flex items-center justify-center floating">
+              <Globe size={80} className="text-primary" />
+              <div className="absolute -bottom-3 -right-3 w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+                <Smartphone size={24} className="text-primary-foreground" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* What is eSIM Section */}
+      <section className="py-16 px-4 md:px-6 bg-secondary/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-16">What is eSIM?</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold">eSIM vs Physical SIM</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="glass-card">
+                  <CardContent className="p-6">
+                    <h4 className="text-lg font-medium mb-4">Traditional SIM</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <span className="text-muted-foreground mr-2">•</span>
+                        <span>Physical card to insert</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-muted-foreground mr-2">•</span>
+                        <span>Need multiple SIMs for different countries</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-muted-foreground mr-2">•</span>
+                        <span>Easily lost or damaged</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-muted-foreground mr-2">•</span>
+                        <span>Limited to one carrier</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                
+                <Card className="glass-card border-primary/20">
+                  <CardContent className="p-6">
+                    <h4 className="text-lg font-medium text-primary mb-4">Gesim eSIM</h4>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-primary mr-2 shrink-0" />
+                        <span>Digital profile - no physical card</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-primary mr-2 shrink-0" />
+                        <span>One eSIM works globally</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-primary mr-2 shrink-0" />
+                        <span>Instant activation via QR code</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-primary mr-2 shrink-0" />
+                        <span>Blockchain-secured connectivity</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+            
+            <div className="relative h-[350px] flex items-center justify-center">
+              <div className="absolute top-0 left-0 w-[200px] h-[200px] bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-2xl"></div>
+              <div className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-2xl"></div>
+              <div className="relative z-10 w-full max-w-md">
+                <img 
+                  src="/images/esim-comparison.svg" 
+                  alt="eSIM comparison" 
+                  className="w-full h-auto"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://placehold.co/600x400/6E56CF/fff?text=eSIM+Comparison';
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Benefits Section */}
+      <section className="py-16 px-4 md:px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-16">Benefits of Gesim</h2>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="glass-card">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <DollarSign size={32} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Dynamic Pricing</h3>
+                <p className="text-muted-foreground">Get the best rates automatically based on your location and usage patterns.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <BarChart4 size={32} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Pay-As-You-Use</h3>
+                <p className="text-muted-foreground">No need for extra recharges. Only pay for what you actually use.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <ArrowRight size={32} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Resell Unused Data</h3>
+                <p className="text-muted-foreground">Turn your unused data into value by reselling it on our marketplace.</p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card">
+              <CardContent className="p-6 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Shield size={32} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Secure & Encrypted</h3>
+                <p className="text-muted-foreground">Your data is fully secure and encrypted on the blockchain.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+      
+      {/* Current Locations Section */}
+      <section className="py-16 px-4 md:px-6 bg-secondary/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-6">Where We're Active</h2>
+          <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">
+            Currently operating in these locations with many more coming soon.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <Card className="glass-card overflow-hidden">
+              <div className="h-48 w-full overflow-hidden">
+                <img 
+                  src="/images/dubai.jpg" 
+                  alt="Dubai" 
+                  className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://placehold.co/600x400/6E56CF/fff?text=Dubai';
+                  }}
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-2">Dubai</h3>
+                <p className="text-muted-foreground">
+                  Seamless connectivity across the United Arab Emirates, perfect for business travelers and tourists alike.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card overflow-hidden">
+              <div className="h-48 w-full overflow-hidden">
+                <img 
+                  src="/images/singapore.jpg" 
+                  alt="Singapore" 
+                  className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://placehold.co/600x400/6E56CF/fff?text=Singapore';
+                  }}
+                />
+              </div>
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-semibold mb-2">Singapore</h3>
+                <p className="text-muted-foreground">
+                  Stay connected in one of Asia's most dynamic business and technology hubs.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Button onClick={() => navigate('/plans')} className="px-8">
+              View All Plans <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </section>
+      
+      {/* Final CTA Section */}
+      <section className="py-20 px-4 md:px-6 relative">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for Global Connectivity?</h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            Join our waitlist to be the first to experience borderless, blockchain-powered connectivity.
+          </p>
+          
+          <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-grow"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <Button type="submit" className="whitespace-nowrap">
+              Get Early Access <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </form>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default LandingPage;

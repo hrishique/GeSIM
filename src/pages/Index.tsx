@@ -1,10 +1,9 @@
 
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SplashScreen from './SplashScreen';
+import React from 'react';
+import LandingPage from './LandingPage';
 
 const Index = () => {
-  return <SplashScreen />;
+  return <LandingPage />;
 };
 
 export default Index;
