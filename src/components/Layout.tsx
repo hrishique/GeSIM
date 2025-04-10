@@ -9,17 +9,18 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
-  const isOnboardingRoute = location.pathname === '/' || location.pathname === '/connect-wallet';
+  const isLandingPage = location.pathname === '/';
+  const showGlobalNav = !isLandingPage && location.pathname !== '/connect-wallet';
   
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-br from-background via-background to-background/80 -z-10" />
       
-      <main className="flex-grow container mx-auto pb-20 pt-6 relative z-0">
+      <main className={`flex-grow container mx-auto ${showGlobalNav ? 'pb-20' : 'pb-0'} pt-6 relative z-0`}>
         {children}
       </main>
       
-      {!isOnboardingRoute && <GlobalNav />}
+      {showGlobalNav && <GlobalNav />}
     </div>
   );
 };

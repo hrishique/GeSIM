@@ -1,12 +1,34 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4, Mail, ExternalLink } from 'lucide-react';
+import { toast } from "@/components/ui/use-toast";
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  
+  const handleSubmitEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    toast({
+      title: "Thank you for your interest!",
+      description: "We'll notify you when early access is available.",
+    });
+    
+    setEmail('');
+  };
   
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
@@ -152,6 +174,15 @@ const LandingPage: React.FC = () => {
               </div>
             </div>
           </div>
+          
+          {/* Mobile-specific extra content */}
+          <div className="md:hidden mt-10 p-4 bg-primary/10 rounded-lg border border-primary/20">
+            <h4 className="font-semibold text-center mb-3">Why eSIM for Mobile?</h4>
+            <p className="text-sm text-center">
+              Switch carriers without changing physical SIMs, save space in your device, and enjoy instant activation.
+              Perfect for international travelers and digital nomads.
+            </p>
+          </div>
         </div>
       </section>
       
@@ -204,6 +235,15 @@ const LandingPage: React.FC = () => {
                 <p className="text-muted-foreground">Your data is fully secure and encrypted on the blockchain.</p>
               </CardContent>
             </Card>
+          </div>
+          
+          {/* Mobile-specific extra content */}
+          <div className="md:hidden mt-10 p-4 bg-primary/10 rounded-lg border border-primary/20">
+            <h4 className="font-semibold text-center mb-3">Gesim for Your Wallet</h4>
+            <p className="text-sm text-center">
+              Connect your wallet to manage your data plans, payments, and unused data reselling all in one place. 
+              Secure, transparent, and fully under your control.
+            </p>
           </div>
         </div>
       </section>
@@ -266,7 +306,7 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
       
-      {/* Final CTA Section - replaced with simpler CTA */}
+      {/* Final CTA Section */}
       <section className="py-20 px-4 md:px-6 relative">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready for Global Connectivity?</h2>
@@ -274,7 +314,7 @@ const LandingPage: React.FC = () => {
             Experience borderless, blockchain-powered connectivity with Gesim.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button onClick={() => navigate('/plans')} className="px-8">
               View Plans <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -282,8 +322,123 @@ const LandingPage: React.FC = () => {
               Explore App <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
+          
+          {/* New email signup section */}
+          <div className="mt-10 p-6 bg-secondary/50 rounded-lg border border-primary/20 max-w-xl mx-auto">
+            <h3 className="text-2xl font-semibold mb-4">Get Early Access</h3>
+            <p className="text-muted-foreground mb-6">
+              Be among the first to experience Gesim when we launch. Sign up for early access updates.
+            </p>
+            
+            <form onSubmit={handleSubmitEmail} className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-grow">
+                <Input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="h-11"
+                  required
+                />
+              </div>
+              <Button type="submit" className="whitespace-nowrap">
+                Get Early Access
+              </Button>
+            </form>
+          </div>
         </div>
       </section>
+      
+      {/* Footer */}
+      <footer className="py-12 px-4 bg-card/50 border-t border-primary/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-4">
+              <h3 className="text-xl font-bold">Gesim</h3>
+              <p className="text-sm text-muted-foreground">
+                Global eSIM connectivity powered by blockchain technology.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="font-semibold">Quick Links</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Button variant="link" className="p-0 h-auto" onClick={() => navigate('/')}>
+                    Home
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="link" className="p-0 h-auto" onClick={() => navigate('/plans')}>
+                    Plans
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="link" className="p-0 h-auto" onClick={() => navigate('/dashboard')}>
+                    Dashboard
+                  </Button>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="font-semibold">Legal</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Button variant="link" className="p-0 h-auto">
+                    Terms of Service
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="link" className="p-0 h-auto">
+                    Privacy Policy
+                  </Button>
+                </li>
+                <li>
+                  <Button variant="link" className="p-0 h-auto">
+                    Refund Policy
+                  </Button>
+                </li>
+              </ul>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="font-semibold">Contact</h4>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-sm">
+                  <Mail className="h-4 w-4" />
+                  support@gesim.io
+                </li>
+                <li className="flex items-center gap-2 text-sm">
+                  <Globe className="h-4 w-4" />
+                  www.gesim.io
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-10 pt-6 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Gesim. All rights reserved.
+            </p>
+            
+            <div className="mt-4 md:mt-0 flex space-x-4">
+              <Button variant="ghost" size="icon" className="rounded-full w-8 h-8">
+                <ExternalLink className="h-4 w-4" />
+                <span className="sr-only">Twitter</span>
+              </Button>
+              <Button variant="ghost" size="icon" className="rounded-full w-8 h-8">
+                <ExternalLink className="h-4 w-4" />
+                <span className="sr-only">LinkedIn</span>
+              </Button>
+              <Button variant="ghost" size="icon" className="rounded-full w-8 h-8">
+                <ExternalLink className="h-4 w-4" />
+                <span className="sr-only">GitHub</span>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
