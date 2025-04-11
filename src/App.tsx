@@ -10,6 +10,8 @@ import WalletConnect from "./pages/WalletConnect";
 import Dashboard from "./pages/Dashboard";
 import Plans from "./pages/Plans";
 import Settings from "./pages/Settings";
+import ESims from "./pages/ESims";
+import Wallet from "./pages/Wallet";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +27,8 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/esims" element={<ESims />} />
+          <Route path="/wallet" element={<Wallet />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
