@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, Globe, Settings, CreditCard, Wallet } from 'lucide-react';
+import { Home, Globe, Settings, CreditCard, Wallet, ChevronLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const GlobalNav: React.FC = () => {
   const navigate = useNavigate();
@@ -42,6 +43,19 @@ const GlobalNav: React.FC = () => {
           })}
         </ul>
       </nav>
+      
+      {/* Back to Landing Page Button */}
+      <div className="absolute -top-12 left-4">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="flex items-center gap-1 text-xs bg-background/80 backdrop-blur-sm border-border/50"
+          onClick={() => navigate('/')}
+        >
+          <ChevronLeft size={14} />
+          Landing Page
+        </Button>
+      </div>
     </div>
   );
 };
