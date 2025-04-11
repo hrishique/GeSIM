@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4, Mail, ExternalLink } from 'lucide-react';
+import { ArrowRight, CheckCircle, Globe, Shield, Smartphone, DollarSign, BarChart4, Mail, ExternalLink, Wallet } from 'lucide-react';
 import { toast } from "@/components/ui/use-toast";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+  const isMobile = useIsMobile();
   
   const handleSubmitEmail = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,19 +34,6 @@ const LandingPage: React.FC = () => {
   
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
-      {/* Header - Removed Wallet Connect Button */}
-      <header className="container mx-auto py-4 px-4 flex justify-end">
-        <div className="w-48">
-          <Button 
-            onClick={() => navigate('/connect-wallet')}
-            variant="outline"
-            className="w-full"
-          >
-            Connect Wallet
-          </Button>
-        </div>
-      </header>
-      
       {/* Hero Section */}
       <section className="py-16 px-4 md:px-6 relative">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -57,12 +46,6 @@ const LandingPage: React.FC = () => {
             </p>
             
             <div className="pt-4 flex flex-wrap gap-4">
-              <Button 
-                onClick={() => navigate('/connect-wallet')}
-                variant="outline"
-              >
-                Connect Wallet
-              </Button>
               <Button 
                 onClick={() => navigate('/dashboard')} 
                 className="flex items-center gap-2"
@@ -87,6 +70,32 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
       
+      {/* Early Access Section - Moved to below hero section */}
+      <section className="py-12 px-4 md:px-6 bg-secondary/30">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Get Early Access</h2>
+          <p className="text-muted-foreground mb-6">
+            Be among the first to experience Gesim when we launch. Sign up for early access updates.
+          </p>
+          
+          <form onSubmit={handleSubmitEmail} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <div className="flex-grow">
+              <Input 
+                type="email" 
+                placeholder="Enter your email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-11"
+                required
+              />
+            </div>
+            <Button type="submit" className="whitespace-nowrap">
+              Get Early Access
+            </Button>
+          </form>
+        </div>
+      </section>
+      
       {/* What is eSIM Section - Enhanced with more description */}
       <section className="py-16 px-4 md:px-6 bg-secondary/50">
         <div className="max-w-6xl mx-auto">
@@ -97,10 +106,14 @@ const LandingPage: React.FC = () => {
               An eSIM (embedded SIM) is a digital SIM that allows you to activate a cellular plan without having to use a physical SIM card. 
               Instead of inserting a physical card, eSIM technology is built directly into your device.
             </p>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground mb-4">
               Gesim takes this technology further by integrating it with blockchain, enabling seamless global connectivity, 
               secure transactions, and the ability to easily switch between carriers without changing physical SIMs.
               Your digital identity and connectivity are secured on the Solana blockchain.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              With eSIM technology, you can store multiple profiles on a single device, switch between them instantly, 
+              and activate new plans remotely without needing to visit a store or wait for a physical SIM to arrive.
             </p>
           </div>
           
@@ -176,13 +189,42 @@ const LandingPage: React.FC = () => {
           </div>
           
           {/* Mobile-specific extra content */}
-          <div className="md:hidden mt-10 p-4 bg-primary/10 rounded-lg border border-primary/20">
-            <h4 className="font-semibold text-center mb-3">Why eSIM for Mobile?</h4>
-            <p className="text-sm text-center">
-              Switch carriers without changing physical SIMs, save space in your device, and enjoy instant activation.
-              Perfect for international travelers and digital nomads.
-            </p>
-          </div>
+          {isMobile && (
+            <div className="mt-10 p-6 bg-primary/10 rounded-lg border border-primary/20">
+              <h4 className="font-semibold text-center mb-4">Why eSIM for Mobile?</h4>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <Smartphone size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">No Physical SIM Required</h5>
+                    <p className="text-sm text-muted-foreground">Free up space in your device and never worry about losing your SIM card again.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <Globe size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Instant Global Coverage</h5>
+                    <p className="text-sm text-muted-foreground">Switch between carriers in seconds when traveling internationally.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <ArrowRight size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Remote Activation</h5>
+                    <p className="text-sm text-muted-foreground">Activate new plans from anywhere with just your phone and an internet connection.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
       
@@ -191,11 +233,12 @@ const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16">Benefits of Gesim</h2>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Updated card design */}
+            <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
+              <div className="h-2 bg-gradient-to-r from-primary to-primary/70"></div>
+              <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                   <DollarSign size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Dynamic Pricing</h3>
@@ -203,10 +246,10 @@ const LandingPage: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+            <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
+              <div className="h-2 bg-gradient-to-r from-primary/70 to-primary"></div>
+              <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                   <BarChart4 size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Pay-As-You-Use</h3>
@@ -214,10 +257,10 @@ const LandingPage: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+            <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
+              <div className="h-2 bg-gradient-to-r from-primary to-primary/70"></div>
+              <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                   <ArrowRight size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Resell Unused Data</h3>
@@ -225,10 +268,10 @@ const LandingPage: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className="bg-gradient-to-br from-card/90 to-secondary/90 backdrop-blur-md border border-white/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5 overflow-hidden group">
-              <CardContent className="p-6 flex flex-col items-center text-center space-y-4 relative">
-                <div className="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-full -mt-10 -mr-10 group-hover:bg-primary/10 transition-all duration-300"></div>
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+            <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
+              <div className="h-2 bg-gradient-to-r from-primary/70 to-primary"></div>
+              <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                   <Shield size={32} className="text-primary" />
                 </div>
                 <h3 className="text-xl font-semibold">Secure & Encrypted</h3>
@@ -237,14 +280,43 @@ const LandingPage: React.FC = () => {
             </Card>
           </div>
           
-          {/* Mobile-specific extra content */}
-          <div className="md:hidden mt-10 p-4 bg-primary/10 rounded-lg border border-primary/20">
-            <h4 className="font-semibold text-center mb-3">Gesim for Your Wallet</h4>
-            <p className="text-sm text-center">
-              Connect your wallet to manage your data plans, payments, and unused data reselling all in one place. 
-              Secure, transparent, and fully under your control.
-            </p>
-          </div>
+          {/* Mobile-specific wallet content */}
+          {isMobile && (
+            <div className="mt-12 p-6 bg-primary/10 rounded-lg border border-primary/20">
+              <h4 className="font-semibold text-center mb-4">Manage With Your Wallet</h4>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <Wallet size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Blockchain Security</h5>
+                    <p className="text-sm text-muted-foreground">Your eSIM identity is secured by Solana blockchain technology.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <DollarSign size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Crypto Payments</h5>
+                    <p className="text-sm text-muted-foreground">Pay for your data with cryptocurrencies for faster global transactions.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <ArrowRight size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Self-Custody</h5>
+                    <p className="text-sm text-muted-foreground">Keep full control of your digital identity and eSIM data.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
       
@@ -314,37 +386,13 @@ const LandingPage: React.FC = () => {
             Experience borderless, blockchain-powered connectivity with Gesim.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button onClick={() => navigate('/plans')} className="px-8">
               View Plans <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button onClick={() => navigate('/dashboard')} variant="outline" className="px-8">
               Explore App <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </div>
-          
-          {/* New email signup section */}
-          <div className="mt-10 p-6 bg-secondary/50 rounded-lg border border-primary/20 max-w-xl mx-auto">
-            <h3 className="text-2xl font-semibold mb-4">Get Early Access</h3>
-            <p className="text-muted-foreground mb-6">
-              Be among the first to experience Gesim when we launch. Sign up for early access updates.
-            </p>
-            
-            <form onSubmit={handleSubmitEmail} className="flex flex-col sm:flex-row gap-3">
-              <div className="flex-grow">
-                <Input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-11"
-                  required
-                />
-              </div>
-              <Button type="submit" className="whitespace-nowrap">
-                Get Early Access
-              </Button>
-            </form>
           </div>
         </div>
       </section>
