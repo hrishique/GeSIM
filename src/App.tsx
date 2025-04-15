@@ -12,6 +12,7 @@ import Plans from "./pages/Plans";
 import Settings from "./pages/Settings";
 import ESims from "./pages/ESims";
 import Wallet from "./pages/Wallet";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
