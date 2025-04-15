@@ -3,7 +3,7 @@ import React from 'react';
 import GlobalNav from './GlobalNav';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck, Wallet } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -19,9 +19,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-br from-background via-background to-background/80 -z-10" />
       
-      {/* Admin Access Button */}
+      {/* Admin Access and Wallet Connect Buttons */}
       {!isLandingPage && (
-        <div className="fixed top-4 right-4 z-50">
+        <div className="fixed top-4 right-4 z-50 flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border-border/50"
+            onClick={() => navigate('/connect-wallet')}
+          >
+            <Wallet size={16} />
+            Connect Wallet
+          </Button>
           <Button
             variant="outline"
             size="sm"
@@ -44,3 +53,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 
 export default Layout;
+
