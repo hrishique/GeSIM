@@ -29,6 +29,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           <Route path="/esims" element={<ESims />} />
           <Route path="/wallet" element={<Wallet />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
