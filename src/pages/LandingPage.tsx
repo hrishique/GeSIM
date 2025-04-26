@@ -42,7 +42,7 @@ const LandingPage: React.FC = () => {
               One eSIM for the World
             </h1>
             <p className="text-lg text-muted-foreground max-w-md">
-              Connect seamlessly across borders with a single decentralized eSIM powered by Solana blockchain technology.
+              Connect seamlessly across borders with a single decentralized eSIM powered by Blockchain blockchain technology.
             </p>
             
             <div className="pt-4 flex flex-wrap gap-4">
@@ -109,7 +109,7 @@ const LandingPage: React.FC = () => {
             <p className="text-lg text-muted-foreground mb-4">
               Gesim takes this technology further by integrating it with blockchain, enabling seamless global connectivity, 
               secure transactions, and the ability to easily switch between carriers without changing physical SIMs.
-              Your digital identity and connectivity are secured on the Solana blockchain.
+              Your digital identity and connectivity are secured on the Blockchain blockchain.
             </p>
             <p className="text-lg text-muted-foreground">
               With eSIM technology, you can store multiple profiles on a single device, switch between them instantly, 
@@ -291,7 +291,7 @@ const LandingPage: React.FC = () => {
                   </div>
                   <div>
                     <h5 className="font-medium">Blockchain Security</h5>
-                    <p className="text-sm text-muted-foreground">Your eSIM identity is secured by Solana blockchain technology.</p>
+                    <p className="text-sm text-muted-foreground">Your eSIM identity is secured by Blockchain blockchain technology.</p>
                   </div>
                 </div>
                 
