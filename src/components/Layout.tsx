@@ -3,7 +3,7 @@ import React from 'react';
 import GlobalNav from './GlobalNav';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { ShieldCheck, Wallet } from 'lucide-react';
+import { ShieldCheck, Wallet, User  } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -28,8 +28,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border-border/50"
             onClick={() => navigate('/connect-wallet')}
           >
-            <Wallet size={16} />
-            Connect Wallet
+            <User size={16} />
+            Login
           </Button>
           <Button
             variant="outline"

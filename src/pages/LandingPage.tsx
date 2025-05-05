@@ -14,6 +14,10 @@ import {
   Mail,
   ExternalLink,
   Wallet,
+  LockKeyhole,
+  EarthLock,
+  Banknote,
+  CreditCard
 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -23,24 +27,24 @@ const LandingPage: React.FC = () => {
   const [email, setEmail] = useState("");
   const isMobile = useIsMobile();
 
-  const handleSubmitEmail = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email.trim() || !email.includes("@")) {
-      toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
+  // const handleSubmitEmail = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!email.trim() || !email.includes("@")) {
+  //     toast({
+  //       title: "Invalid email",
+  //       description: "Please enter a valid email address.",
+  //       variant: "destructive",
+  //     });
+  //     return;
+  //   }
 
-    toast({
-      title: "Thank you for your interest!",
-      description: "We'll notify you when early access is available.",
-    });
+  //   toast({
+  //     title: "Thank you for your interest!",
+  //     description: "We'll notify you when early access is available.",
+  //   });
 
-    setEmail("");
-  };
+  //   setEmail("");
+  // };
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden">
@@ -57,13 +61,13 @@ const LandingPage: React.FC = () => {
             </p>
 
             <div className="pt-4 flex flex-wrap gap-4">
-              <Button
-                onClick={() => navigate("/dashboard")}
-                className="flex items-center gap-2"
-              >
-                Explore App
-                <ArrowRight className="h-4 w-4" />
-              </Button>
+            <Button
+              onClick={() => navigate("/plans")}
+              variant="default"
+              className="px-8"
+            >
+              Explore App <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
             </div>
           </div>
 
@@ -88,28 +92,31 @@ const LandingPage: React.FC = () => {
             Get Early Access
           </h2>
           <p className="text-muted-foreground mb-6">
-            Be among the first to experience Gesim when we launch. Sign up for
-            early access updates.
+            Join our Telegram to stay updated and be among the first to
+            experience GeSIM when we launch.
           </p>
 
-          <form
-            onSubmit={handleSubmitEmail}
-            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          <div
+            // onSubmit={handleSubmitEmail}
+            className="flex flex-col justify-center sm:flex-row gap-3 max-w-md mx-auto"
           >
-            <div className="flex-grow">
-              <Input
+            {/* <div className="flex-grow"> */}
+            {/* <Input
                 type="email"
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="h-11"
                 required
-              />
-            </div>
-            <Button type="submit" className="whitespace-nowrap">
-              Get Early Access
+              /> */}
+            {/* </div> */}
+            <Button variant="default" className="whitespace-nowrap">
+              <a href="https://t.me/gesimxyz" target="_blank">
+                {" "}
+                Get Early Access
+              </a>
             </Button>
-          </form>
+          </div>
         </div>
       </section>
 
@@ -119,25 +126,13 @@ const LandingPage: React.FC = () => {
           <h2 className="text-3xl font-bold text-center mb-8">What is eSIM?</h2>
 
           <div className="max-w-3xl mx-auto mb-12">
-  <p className="text-lg text-muted-foreground mb-4">
-    An eSIM (embedded SIM) is a digital SIM that allows you to activate a cellular plan without having to use a physical SIM card. Instead of inserting a physical card, eSIM technology is built directly into your device.
-  </p>
-  
-  <ul className="text-lg text-muted-foreground list-disc pl-6 space-y-2">
-    <li>
-      <span className="font-medium">eSIM (embedded SIM):</span> Digital SIM embedded in devices, eliminating the need for a physical card.
-    </li>
-    <li>
-      <span className="font-medium">Gesim's blockchain integration:</span> Enables secure global connectivity, easy carrier switching, and digital identity protection.
-    </li>
-    <li>
-      <span className="font-medium">Multi-profile support:</span> Store and switch between multiple cellular profiles instantly.
-    </li>
-    <li>
-      <span className="font-medium">Remote activation:</span> No physical SIM delivery or in-store visits needed—plans activate digitally.
-    </li>
-  </ul>
-</div>
+            <p className="text-lg text-muted-foreground mb-4">
+              GeSIM is a decentralized platform for buying and managing eSIM
+              data plans using power of smart contracts. It connects global
+              users to telecom networks with on-chain identity, encrypted
+              control and flexible, tokenized payments.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
@@ -270,21 +265,21 @@ const LandingPage: React.FC = () => {
       <section className="py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16">
-            Benefits of Gesim
+            Benefits of GeSim
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {/* Updated card design */}
             <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
               <div className="h-2 bg-gradient-to-r from-primary to-primary/70"></div>
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <DollarSign size={32} className="text-primary" />
+                  <CreditCard size={32} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Dynamic Pricing</h3>
+                <h3 className="text-xl font-semibold">Pay-As-You-Use</h3>
                 <p className="text-muted-foreground">
-                  Get the best rates automatically based on your location and
-                  usage patterns.
+                  Usage-based billing using smart contracts and oracle
+                  integration
                 </p>
               </CardContent>
             </Card>
@@ -293,12 +288,11 @@ const LandingPage: React.FC = () => {
               <div className="h-2 bg-gradient-to-r from-primary/70 to-primary"></div>
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <BarChart4 size={32} className="text-primary" />
+                  <LockKeyhole size={32} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Pay-As-You-Use</h3>
+                <h3 className="text-xl font-semibold">Secure & Encrypted</h3>
                 <p className="text-muted-foreground">
-                  No need for extra recharges. Only pay for what you actually
-                  use.
+                Private login via ZK identity with encrypted, user-owned data.
                 </p>
               </CardContent>
             </Card>
@@ -307,12 +301,11 @@ const LandingPage: React.FC = () => {
               <div className="h-2 bg-gradient-to-r from-primary to-primary/70"></div>
               <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                  <ArrowRight size={32} className="text-primary" />
+                  <Globe size={32} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Resell Unused Data</h3>
+                <h3 className="text-xl font-semibold">Global Access</h3>
                 <p className="text-muted-foreground">
-                  Turn your unused data into value by reselling it on our
-                  marketplace.
+                Connect in 180+ countries—no SIM cards, no roaming fees.
                 </p>
               </CardContent>
             </Card>
@@ -323,10 +316,21 @@ const LandingPage: React.FC = () => {
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                   <Shield size={32} className="text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">Secure & Encrypted</h3>
+                <h3 className="text-xl font-semibold">Instant Onboarding</h3>
                 <p className="text-muted-foreground">
-                  Your data is fully secure and encrypted on the blockchain.
-                </p>
+                Instant eSIM access via wallet—no apps, no delays.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
+              <div className="h-2 bg-gradient-to-r from-primary/70 to-primary"></div>
+              <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
+                  <Banknote size={32} className="text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Crypto & Fiat Top-ups</h3>
+                <p className="text-muted-foreground">
+                Top up with USDC or fiat instantly via on-ramps.</p>
               </CardContent>
             </Card>
           </div>
@@ -437,11 +441,11 @@ const LandingPage: React.FC = () => {
             </Card>
           </div>
 
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <Button onClick={() => navigate("/plans")} className="px-8">
               View All Plans <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -456,11 +460,14 @@ const LandingPage: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={() => navigate("/plans")} className="px-8">
-              View Plans <ArrowRight className="ml-2 h-4 w-4" />
+            <Button variant="default" className="px-8">
+              <a href="https://gesim.gitbook.io/gesim" target="_blank">
+                View Docs
+              </a>
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/plans")}
               variant="outline"
               className="px-8"
             >
@@ -475,9 +482,10 @@ const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <h3 className="text-xl font-bold">Gesim</h3>
+              <h3 className="text-xl font-bold">GeSim</h3>
               <p className="text-sm text-muted-foreground">
-                Global eSIM connectivity powered by blockchain technology.
+                Pay-as-you-use mobile data with smart contract based billing and
+                global connectivity powered by on-chain ZK identity.
               </p>
             </div>
 
@@ -490,25 +498,24 @@ const LandingPage: React.FC = () => {
                     className="p-0 h-auto"
                     onClick={() => navigate("/")}
                   >
-                    Home
+                    Plan
                   </Button>
                 </li>
                 <li>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto"
-                    onClick={() => navigate("/plans")}
-                  >
-                    Plans
+                  <Button className="p-0 h-auto" variant="link">
+                    <a href="https://gesim.gitbook.io/gesim" target="_blank">
+                      Explore Docs
+                    </a>
                   </Button>
                 </li>
                 <li>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto"
-                    onClick={() => navigate("/dashboard")}
-                  >
-                    Dashboard
+                  <Button variant="link" className="p-0 h-auto">
+                    <a
+                      href="https://gesim.gitbook.io/gesim/kpi-and-growth-plan/milestones-month-1-3"
+                      target="_blank"
+                    >
+                      Roadmap
+                    </a>
                   </Button>
                 </li>
               </ul>
@@ -555,30 +562,16 @@ const LandingPage: React.FC = () => {
               © {new Date().getFullYear()} GeSim. All rights reserved.
             </p>
 
-            <div className="mt-4 md:mt-0 flex space-x-4">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full w-8 h-8"
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span className="sr-only">Twitter</span>
+            <div className="mt-4 md:mt-0 flex gap-4 space-x-4">
+              <Button variant="link" className="rounded-full w-8 h-8">
+                <a href="https://x.com/gesimxyz" target="_blank">
+                  Twitter
+                </a>
               </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full w-8 h-8"
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full w-8 h-8"
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span className="sr-only">GitHub</span>
+              <Button variant="link" className="rounded-full w-8 h-8">
+                <a href="https://t.me/gesimxyz" target="_blank">
+                  Telegram
+                </a>
               </Button>
             </div>
           </div>

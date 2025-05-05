@@ -101,13 +101,13 @@ const Dashboard: React.FC = () => {
           </Card>
         </section>
         
-        <div className="mt-8 text-center">
+        {/* <div className="mt-8 text-center">
           <Button variant="outline" className="border-dashed border-border flex items-center gap-2">
             <PlusCircle size={16} />
             Add New Device
           </Button>
           <p className="text-xs text-muted-foreground mt-2">Add a new device to your Gesim account</p>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

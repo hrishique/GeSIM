@@ -37,7 +37,27 @@ const ESims: React.FC = () => {
       dataUnit: 'GB',
       validUntil: '2025-06-30',
       region: 'Asia Pacific',
-    }
+    },
+    {
+      id: 'esim-4',
+      iccid: '8944567890123456789',
+      nickname: 'Vacation eSIM',
+      status: 'Inactive',
+      dataRemaining: 5,
+      dataUnit: 'GB',
+      validUntil: '2025-06-30',
+      region: 'Asia Pacific',
+    },
+    {
+      id: 'esim-5',
+      iccid: '8944567890123456789',
+      nickname: 'Vacation eSIM',
+      status: 'Expired',
+      dataRemaining: 5,
+      dataUnit: 'GB',
+      validUntil: '2025-06-30',
+      region: 'Asia Pacific',
+    },
   ];
 
   return (
