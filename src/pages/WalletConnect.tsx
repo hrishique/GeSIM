@@ -5,6 +5,7 @@ import WalletConnectButton from '@/components/WalletConnectButton';
 import { ArrowLeft } from 'lucide-react';
 import { IoLogoApple } from "react-icons/io5";
 import { LuWalletCards } from "react-icons/lu";
+import privy from '/privy.png'
 
 
 
@@ -53,8 +54,7 @@ const WalletConnect: React.FC = () => {
         <h2 className="text-gray-700 text-lg font-medium mb-6">Log in or Sign up</h2>
 
         <div className="flex justify-center mb-6">
-          {/* <img src="" alt="" className="h-6" /> */}
-          <h1 className="text-3xl font-bold text-[#634EBE] mb-2">GeSIM</h1> 
+          <img src={privy}  alt="" className="h-12" />
 
         </div>
 
@@ -78,7 +78,13 @@ const WalletConnect: React.FC = () => {
 
         <a href="#" className="text-sm text-indigo-600 hover:underline mb-6 block">I have a passkey</a>
 
+        <p className="text-sm text-gray-500 mt-6">
+          Protected by{' '}
+          <span className="inline-flex items-center gap-1 font-semibold text-gray-700">
+            <span className="w-0 h-2 rounded-full inline-block"></span>   <img src={privy}  alt="" className="h-5" />
+          </span>
         
+        </p>
       </div>
     </div>
         
