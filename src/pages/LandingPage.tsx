@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaTelegramPlane, FaTwitter } from "react-icons/fa";
+
 import {
   ArrowRight,
   CheckCircle,
@@ -167,7 +170,7 @@ const LandingPage: React.FC = () => {
                 <Card className="glass-card border-primary/20">
                   <CardContent className="p-6">
                     <h4 className="text-lg font-medium text-primary mb-4">
-                      Gesim eSIM
+                      GeSIM
                     </h4>
                     <ul className="space-y-3">
                       <li className="flex items-start">
@@ -265,7 +268,7 @@ const LandingPage: React.FC = () => {
       <section className="py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16">
-            Benefits of GeSim
+            Benefits of GeSIM
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -456,7 +459,7 @@ const LandingPage: React.FC = () => {
             Ready for Global Connectivity?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Experience borderless, blockchain-powered connectivity with Gesim.
+            Experience borderless, blockchain-powered connectivity with GeSIM.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -482,10 +485,10 @@ const LandingPage: React.FC = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
-              <h3 className="text-xl font-bold">GeSim</h3>
+              <h3 className="text-xl font-bold">GeSIM</h3>
               <p className="text-sm text-muted-foreground">
                 Pay-as-you-use mobile data with smart contract based billing and
-                global connectivity powered by on-chain ZK identity.
+                global connectivity powered by on-chain ZK identity.
               </p>
             </div>
 
@@ -559,18 +562,19 @@ const LandingPage: React.FC = () => {
 
           <div className="mt-10 pt-6 border-t border-primary/10 flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} GeSim. All rights reserved.
+              © {new Date().getFullYear()} GeSIM. All rights reserved.
             </p>
 
-            <div className="mt-4 md:mt-0 flex gap-4 space-x-4">
-              <Button variant="link" className="rounded-full w-8 h-8">
+            <div className="mt-4 md:mt-0 flex gap-2 space-x-4">
+              <Button variant="ghost" className="rounded-full hover:bg-[#634EBE] hover:scale-125 h-8 w-8">
                 <a href="https://x.com/gesimxyz" target="_blank">
-                  Twitter
+                  <FaXTwitter />
                 </a>
               </Button>
-              <Button variant="link" className="rounded-full w-8 h-8">
+              <Button variant="ghost" className="rounded-full hover:bg-[#634EBE] hover:scale-125 h-8 w-8">
                 <a href="https://t.me/gesimxyz" target="_blank">
-                  Telegram
+                <FaTelegramPlane/>
+
                 </a>
               </Button>
             </div>
