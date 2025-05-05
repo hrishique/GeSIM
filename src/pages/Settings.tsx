@@ -174,6 +174,7 @@ const Settings: React.FC = () => {
             
             <CardContent>
               <div className="flex items-center justify-between py-2">
+               <a href="mailto:contact@gesim.xyz"> 
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
                     <HelpCircle size={18} className="text-primary" />
@@ -185,6 +186,7 @@ const Settings: React.FC = () => {
                     </p>
                   </div>
                 </div>
+                </a>
                 <Button variant="ghost" size="icon">
                   <ArrowRight size={18} />
                 </Button>

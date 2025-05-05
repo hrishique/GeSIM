@@ -60,6 +60,7 @@ const Wallet: React.FC = () => {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle>Balance</CardTitle>
+              <CardDescription>Address : adhbuavdcuygweuycbkjnd45uhvdjhc</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-2">

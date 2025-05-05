@@ -1,11 +1,14 @@
 
 import React from 'react';
 import Layout from '@/components/Layout';
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const ESims: React.FC = () => {
+
+  const navigate = useNavigate()
   // Mock data for eSIMs
   const esims = [
     {
@@ -209,7 +212,7 @@ const ESims: React.FC = () => {
         </Tabs>
         
         <div className="text-center mt-8">
-          <Button onClick={() => window.location.href = '/plans'}>
+          <Button onClick={() =>  navigate("/plans")}>
             Browse New Plans
           </Button>
         </div>
