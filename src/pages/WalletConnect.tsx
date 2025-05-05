@@ -3,6 +3,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import WalletConnectButton from '@/components/WalletConnectButton';
 import { ArrowLeft } from 'lucide-react';
+import { IoLogoApple } from "react-icons/io5";
+import { LuWalletCards } from "react-icons/lu";
+
+
 
 const WalletConnect: React.FC = () => {
   const navigate = useNavigate();
@@ -27,13 +31,10 @@ const WalletConnect: React.FC = () => {
         </button>
         
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-semibold mb-2">Connect Your Wallet</h1>
-          <p className="text-muted-foreground">
-            Connect your Solana wallet to access global eSIM connectivity
-          </p>
+         
         </div>
         
-        {walletAddress ? (
+        {/* {walletAddress ? (
           <div className="p-6 glass-card border border-primary/30 rounded-lg text-center">
             <div className="text-sm text-muted-foreground mb-2">Wallet Connected</div>
             <div className="font-medium text-primary">{`${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}`}</div>
@@ -44,7 +45,42 @@ const WalletConnect: React.FC = () => {
           </div>
         ) : (
           <WalletConnectButton onConnect={handleConnect} />
-        )}
+        )} */}
+
+
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-sm text-center">
+        <h2 className="text-gray-700 text-lg font-medium mb-6">Log in or Sign up</h2>
+
+        <div className="flex justify-center mb-6">
+          {/* <img src="" alt="" className="h-6" /> */}
+          <h1 className="text-3xl font-bold text-[#634EBE] mb-2">GeSIM</h1> 
+
+        </div>
+
+        <button className="flex items-center justify-start w-full border border-gray-300 rounded-lg px-4 py-2 mb-3 hover:bg-gray-100">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="h-5 w-5 mr-3" />
+          <span className="text-sm font-medium text-gray-700">Google</span>
+        </button>
+
+        <button className="flex items-center justify-start w-full border border-gray-300 rounded-lg px-4 py-2 mb-3 hover:bg-gray-100">
+        <IoLogoApple color='black' size={25} className='mr-3'/>
+          <span className="text-sm font-medium text-gray-700">Apple</span>
+        </button>
+
+        <button className="flex items-center justify-between w-full border border-gray-300 rounded-lg px-4 py-2 hover:bg-gray-100 mb-4">
+          <div className="flex items-center">
+            <LuWalletCards color='black' size={25} className='mr-3'/>
+            <span className="text-sm font-medium text-gray-700">Continue with a wallet</span>
+          </div>
+          <span className="text-gray-400 text-xl">&rsaquo;</span>
+        </button>
+
+        <a href="#" className="text-sm text-indigo-600 hover:underline mb-6 block">I have a passkey</a>
+
+        
+      </div>
+    </div>
         
         <div className="mt-8 text-xs text-center text-muted-foreground">
           By connecting your wallet, you agree to our
