@@ -566,12 +566,12 @@ const LandingPage: React.FC = () => {
             </p>
 
             <div className="mt-4 md:mt-0 flex gap-2 space-x-4">
-              <Button variant="ghost" className="rounded-full hover:bg-[#634EBE] hover:scale-125 h-8 w-8">
+              <Button variant="ghost" className="rounded-full hover:bg-[#634EBE] hover:scale-110 h-8 w-8">
                 <a href="https://x.com/gesimxyz" target="_blank">
                   <FaXTwitter />
                 </a>
               </Button>
-              <Button variant="ghost" className="rounded-full hover:bg-[#634EBE] hover:scale-125 h-8 w-8">
+              <Button variant="ghost" className="rounded-full hover:bg-[#634EBE] hover:scale-110 h-8 w-8">
                 <a href="https://t.me/gesimxyz" target="_blank">
                 <FaTelegramPlane/>
 
