@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowUp, ArrowDown, Plus } from 'lucide-react';
+import eth from '/ethereum.png'
 
 const Wallet: React.FC = () => {
   // Mock data for wallet and transactions
@@ -67,7 +68,7 @@ const Wallet: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
-                      <span className="text-blue-600 font-semibold text-xs">USDC</span>
+                      <img src='/images/usdc.png' className="text-blue-600 font-semibold text-xs" />
                     </div>
                     <span>USDC</span>
                   </div>
@@ -78,7 +79,7 @@ const Wallet: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center">
-                      <span className="text-purple-600 font-semibold text-xs">ETH</span>
+                      <img src='/images/ethereum.png' className="text-purple-600 font-semibold text-xs" />
                     </div>
                     <span>Ethereum</span>
                   </div>

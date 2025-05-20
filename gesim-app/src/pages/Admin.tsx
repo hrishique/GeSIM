@@ -150,7 +150,7 @@ const Admin = () => {
                   )}
                 />
                 
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="country"
                   render={({ field }) => (
@@ -162,7 +162,7 @@ const Admin = () => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
 
                 <Button type="submit" className="w-full">Add Plan</Button>
               </form>
