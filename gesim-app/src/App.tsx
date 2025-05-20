@@ -24,7 +24,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/connect-wallet" element={<WalletConnect />} />
+          {/* <Route path="/connect-wallet" element={<WalletConnect />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/plans" element={<Plans />} />
           <Route path="/settings" element={<Settings />} />

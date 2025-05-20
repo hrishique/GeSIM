@@ -1,12 +1,12 @@
 
 import React from 'react';
-import LandingPage from './Dashboard';
+import Dashboard from './Dashboard';
 import Layout from '../components/Layout';
 
 const Index = () => {
   return (
     <Layout>
-      <LandingPage />
+      <Dashboard />
     </Layout>
   );
 };
