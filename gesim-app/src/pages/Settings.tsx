@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import {
@@ -22,8 +22,44 @@ import {
 } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
+import { auth } from "../firebase.ts";
+import { onAuthStateChanged } from "firebase/auth";
+
+type UserInfo = {
+  name: string | null;
+  email: string | null;
+  uid: string;
+  photo: string | null;
+};
+
 
 const Settings: React.FC = () => {
+
+
+    const [user, setUser] = useState<UserInfo | null>(null);
+
+
+    //Getting user data
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setUser({
+              name: user.displayName,
+              email: user.email,
+              uid: user.uid,
+              photo: user.photoURL,
+            });
+            console.log("User is logged in:", user);
+            // setLoginO/rNot(true)
+          } else {
+            console.log("User is logged out");
+            setUser(null);
+          }
+        });
+    
+        return () => unsubscribe();
+      }, []);
+  
   // Mock data
   const userData = {
     name: 'Alex Johnson',
@@ -52,12 +88,12 @@ const Settings: React.FC = () => {
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
-                    <User size={18} className="text-primary" />
+                   {user?.photo !== null ? <img src={user?.photo} className='rounded-full '/> :  <User size={18} className="text-primary" />}
                   </div>
                   <div>
-                    <h3 className="font-medium">{userData.name}</h3>
+                    <h3 className="font-medium">{user?.name}</h3>
                     <p className="text-xs text-muted-foreground">
-                      {`${userData.walletAddress.slice(0, 6)}...${userData.walletAddress.slice(-4)}`}
+                      {`${user?.email}`}
                     </p>
                   </div>
                 </div>

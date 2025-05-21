@@ -8,9 +8,13 @@ import { LuWalletCards } from "react-icons/lu";
 import privy from '/privy.png'
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../firebase.ts';
+import { boolean } from 'zod';
 
+type Props = {
+  setOpenLogin : (data: boolean)=> void
+}
 
-const WalletConnect: React.FC = () => {
+const WalletConnect: React.FC = ({setOpenLogin}) => {
   const navigate = useNavigate();
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   
@@ -19,6 +23,7 @@ const WalletConnect: React.FC = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         const user = result.user;
+        setOpenLogin(false)
         console.log('User Info:', user);
 
         // Save user in state or localStorage if needed
@@ -73,6 +78,7 @@ const WalletConnect: React.FC = () => {
 
         {/* <a href="#" className="text-sm text-indigo-600 hover:underline mb-6 block">I have a passkey</a> */}
 
+        <button onClick={() => setOpenLogin(false)} className='font-semibold py-2 px-2 w-20 text-center text-emerald-500 cursor-pointer hover:bg-emerald-100 hover:rounded-md hover:px-2 hover:py-2'>Skip</button>
         <p className="text-sm text-gray-500 mt-6">
           Protected by{' '}
           <span className="inline-flex items-center gap-1 font-semibold text-gray-700">

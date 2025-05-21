@@ -83,11 +83,11 @@ const Plans: React.FC = () => {
         </div>
         
         <Tabs defaultValue="global" className="mb-6">
-          <TabsList className="w-full grid grid-cols-3">
+          {/* <TabsList className="w-full grid grid-cols-3">
             <TabsTrigger value="global">Global</TabsTrigger>
             <TabsTrigger value="regional">Regional</TabsTrigger>
             <TabsTrigger value="local">Local</TabsTrigger>
-          </TabsList>
+          </TabsList> */}
           
           <TabsContent value="global" className="mt-4 space-y-4">
             {plans

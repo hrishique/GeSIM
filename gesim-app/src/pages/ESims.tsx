@@ -72,11 +72,11 @@ const ESims: React.FC = () => {
         </div>
         
         <Tabs defaultValue="active" className="mb-6">
-          {/* <TabsList className="w-full grid grid-cols-3">
+          <TabsList className="w-full grid grid-cols-3">
             <TabsTrigger value="active">Active</TabsTrigger>
             <TabsTrigger value="inactive">Inactive</TabsTrigger>
             <TabsTrigger value="expired">Expired</TabsTrigger>
-          </TabsList> */}
+          </TabsList>
           
           <TabsContent value="active" className="mt-4 space-y-4">
             {esims

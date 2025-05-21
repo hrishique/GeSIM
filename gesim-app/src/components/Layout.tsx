@@ -11,6 +11,7 @@ import { MdOutlineLogout } from "react-icons/md";
 import { signOut } from "firebase/auth";
 import Kyc from "@/pages/Kyc.tsx";
 import ConfirmLogoutModal from "./ConfirmLogoutModal.tsx";
+import { FaRegUser } from "react-icons/fa";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [loginOrNot, setLoginOrNot] = useState<boolean>(false);
+  const [openLogin, setOpenLogin] = useState<boolean>(false);
   // const isLandingPage = location.pathname === '/';
   const showGlobalNav = location.pathname !== "/connect-wallet";
 
@@ -31,14 +33,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        console.log("Signed out");
-        setLoginOrNot(false);
-        setShowLogoutModal(false);
-        localStorage.removeItem("kycSubmitted");
-      })
-      .catch((error) => console.error("Sign-out error:", error));
+    if (loginOrNot) {
+      signOut(auth)
+        .then(() => {
+          console.log("Signed out");
+          setLoginOrNot(false);
+          setShowLogoutModal(false);
+          localStorage.removeItem("kycSubmitted");
+        })
+        .catch((error) => console.error("Sign-out error:", error));
+    } else {
+      setOpenLogin(true);
+    }
   };
 
   useEffect(() => {
@@ -58,21 +64,29 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <div className="fixed top-0 left-0 w-full h-full bg-gradient-to-br from-background via-background to-background/80 -z-10" />
 
-      {!loginOrNot ? (
-        <WalletConnect />
-      ) : !submitKYC ? 
-        <Kyc setSubmitKyc={setSubmitKyc} />
-       : (
+      {openLogin && !loginOrNot ? (
+        <WalletConnect setOpenLogin={setOpenLogin}/>
+      ) : !submitKYC && loginOrNot ? 
+        <Kyc setSubmitKyc={setSubmitKyc} /> :   (
         <>
           <div className="fixed top-4 right-4 z-50 flex gap-2">
             <Button
               variant="outline"
               size="sm"
               className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border-border/50"
-              onClick={() => setShowLogoutModal(true)}
+              onClick={() => handleLogout()}
             >
-              <MdOutlineLogout size={16} />
-              Logout
+              {loginOrNot ? (
+                <>
+                  <MdOutlineLogout size={16} />
+                  Logout
+                </>
+              ) : (
+                <>
+                  <FaRegUser size={16} />
+                  Login
+                </>
+              )}
             </Button>
             <Button
               variant="outline"
