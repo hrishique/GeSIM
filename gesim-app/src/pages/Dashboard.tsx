@@ -30,8 +30,9 @@ type UserInfo = {
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<UserInfo | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState("");
+ const [isOpen, setIsOpen] = useState<boolean>(false);
+const [selectedPlan, setSelectedPlan] = useState<string>("");
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

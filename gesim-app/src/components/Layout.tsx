@@ -30,7 +30,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return stored === "true"; // true if already submitted
   });
 
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState<boolean>(false);
 
   const handleLogout = () => {
     if (loginOrNot) {

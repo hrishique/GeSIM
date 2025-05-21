@@ -1,14 +1,13 @@
-
-import React, { useEffect, useState } from 'react';
-import Layout from '@/components/Layout';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useState } from "react";
+import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from "@/components/ui/card";
 import {
   ArrowRight,
   Bell,
@@ -19,9 +18,9 @@ import {
   ShieldCheck,
   User,
   Wallet,
-} from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
-import { Switch } from '@/components/ui/switch';
+} from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
 import { auth } from "../firebase.ts";
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -32,68 +31,75 @@ type UserInfo = {
   photo: string | null;
 };
 
-
 const Settings: React.FC = () => {
+  const [user, setUser] = useState<UserInfo | null>(null);
 
-
-    const [user, setUser] = useState<UserInfo | null>(null);
-
-
-    //Getting user data
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-          if (user) {
-            setUser({
-              name: user.displayName,
-              email: user.email,
-              uid: user.uid,
-              photo: user.photoURL,
-            });
-            console.log("User is logged in:", user);
-            // setLoginO/rNot(true)
-          } else {
-            console.log("User is logged out");
-            setUser(null);
-          }
+  //Getting user data
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser({
+          name: user.displayName,
+          email: user.email,
+          uid: user.uid,
+          photo: user.photoURL,
         });
-    
-        return () => unsubscribe();
-      }, []);
-  
+        console.log("User is logged in:", user);
+        // setLoginO/rNot(true)
+      } else {
+        console.log("User is logged out");
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   // Mock data
   const userData = {
-    name: 'Alex Johnson',
-    walletAddress: '2Ych8hGGC72eHFEhEQ1xgGY7M3E5vG7prKRbGpGQy4Nw',
+    name: "Alex Johnson",
+    walletAddress: "2Ych8hGGC72eHFEhEQ1xgGY7M3E5vG7prKRbGpGQy4Nw",
     kycVerified: true,
-    walletType: 'Phantom',
+    walletType: "Phantom",
     notificationsEnabled: true,
   };
-  
+
   return (
     <Layout>
       <div className="max-w-lg mx-auto fade-in">
         <div className="mb-6">
           <h1 className="text-2xl font-bold">Settings</h1>
-          <p className="text-muted-foreground">Manage your account preferences</p>
+          <p className="text-muted-foreground">
+            Manage your account preferences
+          </p>
         </div>
-        
+
         <section className="mb-6">
           <Card className="glass-card border border-border/50">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg font-medium">Profile</CardTitle>
-              <CardDescription>Manage your personal information</CardDescription>
+              <CardDescription>
+                Manage your personal information
+              </CardDescription>
             </CardHeader>
-            
+
             <CardContent>
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
-                   {user?.photo !== null ? <img src={user?.photo} className='rounded-full '/> :  <User size={18} className="text-primary" />}
+                    {user?.photo ? (
+                      <img
+                        src={user?.photo}
+                        className="rounded-full w-6 h-6 object-cover"
+                      />
+                    ) : (
+                      <User size={18} className="text-primary" />
+                    )}
                   </div>
                   <div>
-                    <h3 className="font-medium">{user?.name}</h3>
+                    <h3 className="font-medium">{user?.name || "User"}</h3>
                     <p className="text-xs text-muted-foreground">
-                      {`${user?.email}`}
+                      {user?.email || "2Ych8hOPtr49332AKLHils"}
                     </p>
                   </div>
                 </div>
@@ -101,9 +107,9 @@ const Settings: React.FC = () => {
                   <ArrowRight size={18} />
                 </Button>
               </div>
-              
+
               <Separator className="my-2 bg-border/50" />
-              
+
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
@@ -112,7 +118,7 @@ const Settings: React.FC = () => {
                   <div>
                     <h3 className="font-medium">KYC Verification</h3>
                     <p className="text-xs text-muted-foreground">
-                      {userData.kycVerified ? 'Verified' : 'Not verified'}
+                      {userData.kycVerified ? "Verified" : "Not verified"}
                     </p>
                   </div>
                 </div>
@@ -120,9 +126,9 @@ const Settings: React.FC = () => {
                   <ArrowRight size={18} />
                 </Button>
               </div>
-              
+
               <Separator className="my-2 bg-border/50" />
-              
+
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
@@ -130,7 +136,9 @@ const Settings: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-medium">Connected Wallet</h3>
-                    <p className="text-xs text-muted-foreground">{userData.walletType}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {userData.walletType}
+                    </p>
                   </div>
                 </div>
                 <Button variant="ghost" size="icon">
@@ -140,14 +148,14 @@ const Settings: React.FC = () => {
             </CardContent>
           </Card>
         </section>
-        
+
         <section className="mb-6">
           <Card className="glass-card border border-border/50">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg font-medium">Preferences</CardTitle>
               <CardDescription>Customize your app experience</CardDescription>
             </CardHeader>
-            
+
             <CardContent>
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
@@ -163,9 +171,9 @@ const Settings: React.FC = () => {
                 </div>
                 <Switch checked={userData.notificationsEnabled} />
               </div>
-              
+
               <Separator className="my-2 bg-border/50" />
-              
+
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
@@ -173,16 +181,18 @@ const Settings: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-medium">Language</h3>
-                    <p className="text-xs text-muted-foreground">English (US)</p>
+                    <p className="text-xs text-muted-foreground">
+                      English (US)
+                    </p>
                   </div>
                 </div>
                 <Button variant="ghost" size="icon">
                   <ArrowRight size={18} />
                 </Button>
               </div>
-              
+
               <Separator className="my-2 bg-border/50" />
-              
+
               <div className="flex items-center justify-between py-2">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
@@ -200,41 +210,43 @@ const Settings: React.FC = () => {
             </CardContent>
           </Card>
         </section>
-        
+
         <section className="mb-6">
           <Card className="glass-card border border-border/50">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg font-medium">Support</CardTitle>
               <CardDescription>Get help with Gesim</CardDescription>
             </CardHeader>
-            
+
             <CardContent>
-            <a href="mailto:contact@gesim.xyz"> 
-              <div className="flex items-center justify-between py-2">
-              
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
-                    <HelpCircle size={18} className="text-primary" />
+              <a href="mailto:contact@gesim.xyz">
+                <div className="flex items-center justify-between py-2">
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mr-3">
+                      <HelpCircle size={18} className="text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium">Help Center</h3>
+                      <p className="text-xs text-muted-foreground">
+                        FAQ and troubleshooting
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-medium">Help Center</h3>
-                    <p className="text-xs text-muted-foreground">
-                      FAQ and troubleshooting
-                    </p>
-                  </div>
+
+                  <Button variant="ghost" size="icon">
+                    <ArrowRight size={18} />
+                  </Button>
                 </div>
-               
-                <Button variant="ghost" size="icon">
-                  <ArrowRight size={18} />
-                </Button>
-              </div>
               </a>
             </CardContent>
           </Card>
         </section>
-        
+
         <div className="mt-10 mb-6 text-center">
-          <Button variant="outline" className="text-muted-foreground hover:text-destructive flex items-center gap-2">
+          <Button
+            variant="outline"
+            className="text-muted-foreground hover:text-destructive flex items-center gap-2"
+          >
             <LogOut size={16} />
             Disconnect Wallet
           </Button>

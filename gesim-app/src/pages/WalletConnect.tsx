@@ -33,6 +33,11 @@ const WalletConnect: React.FC = ({setOpenLogin}) => {
       });
   };
   
+
+  const handleSkip = () => {
+     setOpenLogin(false)
+     navigate("/")
+  }
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 fade-in">
       <div className="w-full max-w-md">
@@ -78,7 +83,7 @@ const WalletConnect: React.FC = ({setOpenLogin}) => {
 
         {/* <a href="#" className="text-sm text-indigo-600 hover:underline mb-6 block">I have a passkey</a> */}
 
-        <button onClick={() => setOpenLogin(false)} className='font-semibold py-2 px-2 w-20 text-center text-emerald-500 cursor-pointer hover:bg-emerald-100 hover:rounded-md hover:px-2 hover:py-2'>Skip</button>
+        <button onClick={() => handleSkip()} className='font-semibold py-2 px-2 w-20 text-center text-emerald-500 cursor-pointer hover:bg-emerald-100 hover:rounded-md hover:px-2 hover:py-2'>Skip</button>
         <p className="text-sm text-gray-500 mt-6">
           Protected by{' '}
           <span className="inline-flex items-center gap-1 font-semibold text-gray-700">
