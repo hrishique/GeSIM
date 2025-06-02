@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
+import TopMenu from "@/components/TopMenu";
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -50,8 +51,12 @@ const LandingPage: React.FC = () => {
   // };
 
   return (
+    <>
+    <TopMenu />
+      
     <div className="min-h-screen w-full overflow-x-hidden">
       {/* Hero Section */}
+
       <section className="py-16 px-4 md:px-6 relative">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 fade-in">
@@ -269,7 +274,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Benefits Section - Updated Card Design */}
-      <section className="py-16 px-4 md:px-6">
+      <section id="features" className="py-16 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-16">
             Benefits of GeSIM
@@ -488,7 +493,7 @@ const LandingPage: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 bg-card/50 border-t border-primary/10">
+      <footer id="contact" className="py-12 px-4 bg-card/50 border-t border-primary/10">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-4">
@@ -591,6 +596,7 @@ const LandingPage: React.FC = () => {
         </div>
       </footer>
     </div>
+    </>
   );
 };
 

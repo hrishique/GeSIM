@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
+import TopMenu from "@/components/TopMenu";
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
@@ -50,8 +51,12 @@ const LandingPage: React.FC = () => {
   // };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <>
+      <TopMenu />
+      
+          <div className="min-h-screen w-full overflow-x-hidden">
       {/* Hero Section */}
+     
       <section className="py-16 px-4 md:px-6 relative">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 fade-in">
@@ -582,6 +587,9 @@ const LandingPage: React.FC = () => {
         </div>
       </footer>
     </div>
+    </>
+    
+
   );
 };
 
