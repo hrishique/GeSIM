@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String  @id @default(uuid())
+  mailid       String 
+  wallet       String  
+  kycStatus    Boolean @default(false)
+  esimMintStatus Boolean @default(false)
+  createdAt    DateTime @default(now())
+  esimDetails  Esim[]
+}
+
+model Esim {
+  id              String   @id @default(uuid())
+  userId          String
+  status          String
+  planId          String
+  activatedAt     DateTime?
+  transactionHash String?
+  mnoResponse     Json?
+  User            User     @relation(fields: [userId], references: [id])
+}
+
+model EsimPlan {
+  id          String   @id @default(uuid()) // using UUID as primary key
+  plan_name   String
+  plan_type   Int @default(101) // Integer, 101-Global, 102-Regional,103-local
+  price       Float    // Prisma uses Float for numeric/decimal values
+  data_limit  Int      // Integer, in GB
+  validity    Int      // Integer, in days
+  description String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TypeReferenceGroup {
+  id          String         @id @default(uuid())
+  name        String
+  code        String         @unique
+  description String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  // Relations
+  typeReferences TypeReference[]
+}
+
+model TypeReference {
+  id          String   @id @default(uuid())
+  label       String
+  code        String  @unique  // Make 'code' unique to allow referencing
+  description String?
+  sortOrder   Int?
+  groupId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  group TypeReferenceGroup @relation(fields: [groupId], references: [id])
+}
+
+
+

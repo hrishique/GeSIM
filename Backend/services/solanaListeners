@@ -1,0 +1,32 @@
+const web3 = require('@solana/web3.js');
+const logger = require('../utils/loggers');
+
+const startListener = () => {
+  const connection = new web3.Connection(web3.clusterApiUrl('devnet'), 'confirmed');
+  // const programId = new web3.PublicKey(process.env.SOLANA_PROGRAM_ID);
+
+  // connection.onLogs(programId, async (logInfo) => {
+  //   logger.info('📡 Solana Log Detected', logInfo);
+
+  //   const txSignature = logInfo.signature;
+  //   const logs = logInfo.logs.join('\n');
+
+  //   if (logs.includes('Event: EsimPurchased')) {
+  //     const planMatch = logs.match(/PlanID: (\w+)/);
+  //     const walletMatch = logs.match(/Wallet: (\w+)/);
+
+  //     const planId = planMatch?.[1];
+  //     const wallet = walletMatch?.[1];
+
+  //     if (planId && wallet) {
+  //       logger.info(`🧠 Parsed purchase for wallet ${wallet} and plan ${planId}`);
+  //       // TODO: Trigger backend logic to activate eSIM here.
+  //       // Optionally make internal API call or use Prisma directly.
+  //     } else {
+  //       logger.error('⚠️ Could not parse logs properly.');
+  //     }
+  //   }
+  // }, 'confirmed');
+};
+
+module.exports = startListener;
