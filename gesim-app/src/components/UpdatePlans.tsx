@@ -49,7 +49,7 @@ const formSchema = z.object({
   }),
 });
 
-const UpdatePlans = ({ setOpenUpdate, plan }) => {
+const UpdatePlans = ({ setOpenUpdate, plan, onUpdate }) => {
   const { toast } = useToast();
   const [plans, setPlans] = useState<Plans[]>();
   const [isLoading, setIsLoading] = useState(false);
@@ -91,19 +91,19 @@ const UpdatePlans = ({ setOpenUpdate, plan }) => {
         price: values.price,
       };
 
-      const response = await axios.post(
-        "https://gesim-r6h2.onrender.com/api/admin/plans",
+      const response = await axios.put(
+        `https://gesim-r6h2.onrender.com/api/admin/edit-plan/${plan.id}`,
         payload
       );
-      const newPlan = response.data; // get the created plan (with id)
-      console.log(newPlan);
+      const updatedPlan = response.data; // get the created plan (with id)
+      setOpenUpdate(false)
+       onUpdate();
+      console.log("Plan updated successfully ", updatedPlan);
 
-      // ✅ Update local state to show it instantly
-      setPlans((prev) => [...prev, newPlan]);
-
+    
       toast({
-        title: "Plan Added",
-        description: "The eSIM plan has been successfully added.",
+        title: "Plan updated successfully",
+        description: "The eSIM plan has been successfully updated.",
       });
 
       form.reset();

@@ -53,6 +53,7 @@ const Admin = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [openUpdate, setOpenUpdate] = useState(false);
+  const [editingPlan, setEditingPlan] = useState(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -68,7 +69,7 @@ const Admin = () => {
   const handleEdit = (plan: Plans) => {
 
        setOpenUpdate(true)
-         setSelectedPlan(plan);
+       setSelectedPlan(plan);
 
   };
 
@@ -90,10 +91,11 @@ const Admin = () => {
       );
     }
   };
+
+  
  
 
-  useEffect(() => {
-
+  
      const fetchUsers = async () => {
     try {
       const response = await axios.get<Plans[]>('https://gesim-r6h2.onrender.com/api/admin/plans');
@@ -103,6 +105,15 @@ const Admin = () => {
       console.error(err)
     } 
   };
+
+
+  const handlePlanUpdate = () => {
+
+    fetchUsers()
+
+  }
+  useEffect(() => {
+
   fetchUsers()
 
   }, [])
@@ -153,7 +164,7 @@ async function onSubmit(values: z.infer<typeof formSchema>) {
         {
            openUpdate ?
            
-        <UpdatePlans setOpenUpdate={setOpenUpdate} plan={selectedPlan}/> 
+        <UpdatePlans setOpenUpdate={setOpenUpdate} plan={selectedPlan}  onUpdate={handlePlanUpdate}/> 
         :
          <div className="grid gap-8 md:grid-cols-2">
           <div>
