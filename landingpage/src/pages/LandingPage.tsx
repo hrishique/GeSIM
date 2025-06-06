@@ -35,7 +35,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <>
-      <TopMenu setIsModalOpen={setIsModalOpen}/>
+      <TopMenu setIsModalOpen={setIsModalOpen} />
 
       <div className="min-h-screen w-full overflow-x-hidden">
         {/* Hero Section */}
@@ -53,13 +53,12 @@ const LandingPage: React.FC = () => {
               <div className="pt-4 flex flex-wrap gap-4">
                 {/* <a href="https://app.gesim.xyz/" target="_blank"> */}
                 <Button
-                  // onClick={() => navigate("/plans")}
-                  variant="default"
-                  className="px-8"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Join the Waitlist <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                onClick={() => setIsModalOpen(true)}
+                variant="outline"
+                className="px-8"
+              >
+                Join the Waitlist <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
                 {/* </a> */}
               </div>
             </div>
@@ -69,7 +68,8 @@ const LandingPage: React.FC = () => {
               <div className="absolute h-[300px] w-[300px] rounded-full border border-primary/20 animate-pulse"></div>
               <div className="absolute h-[200px] w-[200px] rounded-full border border-primary/30 animate-pulse"></div>
               <div className="relative z-10 w-[180px] h-[280px] bg-gradient-to-br from-card/80 to-card/50 backdrop-blur-md border border-white/10 shadow-xl rounded-3xl flex items-center justify-center floating">
-                <Globe size={80} className="text-primary" />
+                {/* <Globe size={80} className="text-primary" /> */}
+                <img src="/images/logo.png" className="w-24" alt="" />
                 <div className="absolute -bottom-3 -right-3 w-16 h-16 bg-primary rounded-full flex items-center justify-center">
                   <Smartphone size={24} className="text-primary-foreground" />
                 </div>
@@ -123,9 +123,11 @@ const LandingPage: React.FC = () => {
             <div className="max-w-3xl mx-auto mb-12">
               <p className="text-lg text-muted-foreground mb-4">
                 GeSIM is a decentralized platform for buying and managing eSIM
-                data plans using power of smart contracts. It connects global
-                users to telecom networks with on-chain identity, encrypted
-                control and flexible, tokenized payments.
+                data plans using the power of smart contracts. It connects
+                global users to the nearest local telecom networks through
+                on-chain identity, enabling flexible switching to better
+                operators — all while using tokenized payments with a
+                pay-as-you-go model.
               </p>
             </div>
 
@@ -554,7 +556,9 @@ const LandingPage: React.FC = () => {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-sm">
                     <Mail className="h-4 w-4" />
+                    <a href="mailto:contact@gesim.xyz" className="hover:text-gray-300">
                     contact@gesim.xyz
+                    </a>
                   </li>
                   <li className="flex items-center gap-2 text-sm">
                     <Globe className="h-4 w-4" />

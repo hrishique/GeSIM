@@ -10,13 +10,14 @@ export default function TopMenu({ setIsModalOpen }) {
   }
 
   return (
-    <nav className="select-none text-white px-6 py-2 bg-black rounded-full flex items-center justify-between w-full sticky top-2 z-50">
+    <nav className="select-none text-white px-6 py-2 bg-slate-950 rounded-full flex items-center justify-between w-full
+     sticky top-2 right-0 left-0 z-50">
       {/* Logo */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-">
        
         <img src="/images/logo.png" width={50} alt="" />
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
-          GeSIM
+          eSIM
         </span> 
       </div>
 
