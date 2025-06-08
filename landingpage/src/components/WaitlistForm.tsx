@@ -99,7 +99,7 @@ export default function WaitlistForm({ isOpen, onClose }) {
               />
               <div className="bg-blue-950 rounded-xl p-3">
                 {/* <FiGlobe color="purple" size={25} /> */}
-                <img src="/images/logo.png" className="w-14" alt="" />
+                <img src="/images/logo.png" className="w-16" alt="" />
               </div>
 
               {/* Close button */}

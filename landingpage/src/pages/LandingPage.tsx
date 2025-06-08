@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FaXTwitter } from "react-icons/fa6";
+import { IoIosSwitch } from "react-icons/io";
 import { FaTelegramPlane, FaTwitter } from "react-icons/fa";
 
 import {
@@ -29,9 +30,18 @@ import WaitlistForm from "@/components/WaitlistForm";
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams()
   const [email, setEmail] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
+
+
+    useEffect(() => {
+    const formParam = searchParams.get("user");
+    if (formParam === "invited") {
+      setIsModalOpen(true);
+    }
+  }, [searchParams]);
 
   return (
     <>
@@ -267,18 +277,17 @@ const LandingPage: React.FC = () => {
               Benefits of GeSIM
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Updated card design */}
               <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
                 <div className="h-2 bg-gradient-to-r from-primary to-primary/70"></div>
                 <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                    <CreditCard size={32} className="text-primary" />
+                    <Globe size={32} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Pay-As-You-Use</h3>
+                  <h3 className="text-xl font-semibold">Global Pay-Per-Use Connectivity</h3>
                   <p className="text-muted-foreground">
-                    Usage-based billing using smart contracts and oracle
-                    integration
+                   Smart billing, no changing eSIM, 180+ countries (Coming soon)
                   </p>
                 </CardContent>
               </Card>
@@ -287,17 +296,16 @@ const LandingPage: React.FC = () => {
                 <div className="h-2 bg-gradient-to-r from-primary/70 to-primary"></div>
                 <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
-                    <LockKeyhole size={32} className="text-primary" />
+                    <IoIosSwitch size={32} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Secure & Encrypted</h3>
+                  <h3 className="text-xl font-semibold">Operater switch logic</h3>
                   <p className="text-muted-foreground">
-                    Private login via ZK identity with encrypted, user-owned
-                    data.
+                    Seamless Effortless Travel Connectivity.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
+              {/* <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
                 <div className="h-2 bg-gradient-to-r from-primary to-primary/70"></div>
                 <CardContent className="p-8 flex flex-col items-center text-center space-y-4">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
@@ -308,7 +316,7 @@ const LandingPage: React.FC = () => {
                     Connect in 180+ countries—no SIM cards, no roaming fees.
                   </p>
                 </CardContent>
-              </Card>
+              </Card> */}
 
               <Card className="overflow-hidden border-0 shadow-lg transition-all duration-300 hover:-translate-y-2">
                 <div className="h-2 bg-gradient-to-r from-primary/70 to-primary"></div>
@@ -316,9 +324,9 @@ const LandingPage: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                     <Shield size={32} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Instant Onboarding</h3>
+                  <h3 className="text-xl font-semibold">eSIM SBT Mint</h3>
                   <p className="text-muted-foreground">
-                    Instant eSIM access via wallet—no apps, no delays.
+                    On-Chain Identity for Travel Perks
                   </p>
                 </CardContent>
               </Card>
@@ -330,7 +338,7 @@ const LandingPage: React.FC = () => {
                     <Banknote size={32} className="text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold">
-                    Crypto & Fiat Top-ups
+                    Buy regional data
                   </h3>
                   <p className="text-muted-foreground">
                     Top up with USDC or fiat instantly via on-ramps.
