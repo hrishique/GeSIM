@@ -23,7 +23,7 @@ const ESIMSection = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-5xl  font-bold text-white mb-8">
-            What is <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">eSIM?</span>
+            What is <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">GeSIM?</span>
           </h1>
           <p className="text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
            GeSIM is a decentralized platform for buying and managing eSIM
