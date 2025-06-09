@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoIosSwitch } from "react-icons/io";
 import { FaTelegramPlane, FaTwitter } from "react-icons/fa";
+import { Check, Zap, Play } from "lucide-react";
 
 import {
   ArrowRight,
@@ -27,16 +28,17 @@ import { toast } from "@/components/ui/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import TopMenu from "@/components/TopMenu";
 import WaitlistForm from "@/components/WaitlistForm";
+import { FeatureCard } from "@/components/FeatureCard";
+import ESIMSection from "@/components/EsimSection";
 
 const LandingPage: React.FC = () => {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const isMobile = useIsMobile();
 
-
-    useEffect(() => {
+  useEffect(() => {
     const formParam = searchParams.get("user");
     if (formParam === "invited") {
       setIsModalOpen(true);
@@ -50,30 +52,67 @@ const LandingPage: React.FC = () => {
       <div className="min-h-screen w-full overflow-x-hidden">
         {/* Hero Section */}
 
-        <section className="py-16 px-4 md:px-6 relative">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 fade-in">
+        <section className="relative min-h-screen overflow-hidden ">
+          {/* Video Background */}
+          <div className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-20"
+            >
+              <source
+                src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761"
+                type="video/mp4"
+              />
+            </video>
+            <div className="absolute inset-0"></div>
+          </div>
+
+          {/* Animated Particles */}
+          <div className="absolute inset-0 z-10">
+            <div className="absolute top-20 left-20 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+            <div className="absolute top-40 right-32 w-3 h-3 bg-blue-400 rounded-full animate-bounce delay-300"></div>
+            <div className="absolute bottom-40 left-32 w-1.5 h-1.5 bg-blue-300 rounded-full animate-pulse delay-700"></div>
+            <div className="absolute top-32 left-1/2 w-2.5 h-2.5 bg-blue-500 rounded-full animate-bounce delay-500"></div>
+            <div className="absolute bottom-32 right-20 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-1000"></div>
+          </div>
+
+          <div className="relative z-20  px- pt-20 pb-32 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="">
+              {/* Animated Logo/Badge */}
+              
+
+              {/* Animated Main Heading */}
               <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
+                {" "}
                 One eSIM for the World
               </h1>
-              <p className="text-lg text-muted-foreground max-w-md">
+
+              {/* Animated Subtitle */}
+              <p className="text-xl md:text-xl text-slate-300 max-w-4xl mt-5 mx-auto leading-relaxed mb-12 animate-fade-in delay-1000">
+              
                 Smart, borderless eSIM — connect globally, pay locally.
               </p>
 
-              <div className="pt-4 flex flex-wrap gap-4">
-                {/* <a href="https://app.gesim.xyz/" target="_blank"> */}
-                <Button
-                onClick={() => setIsModalOpen(true)}
-                variant="outline"
-                className="px-8"
-              >
-                Join the Waitlist <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-                {/* </a> */}
+              {/* Animated CTA Buttons */}
+              <div className="flex sm:flex-row gap-4 mb-16 animate-fade-in delay-1200">
+                <button  onClick={() => setIsModalOpen(true)} className="group  hover:bg-purple-700 border-[1px] border-solid border-gray-00 text-white px-8 py-2 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
+                  Join the Waitlist
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                {/* <button className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2 transform hover:scale-105">
+                  <Play className="w-5 h-5" />
+                  Watch Demo
+                </button> */}
               </div>
+
+            
             </div>
 
-            <div className="relative h-[400px] w-full flex items-center justify-center">
+              {/* 3D Animated Phone Mockup */}
+             <div className="relative h-[400px] w-full flex items-center justify-center">
               <div className="absolute inset-0 rounded-full bg-primary/5 animate-pulse"></div>
               <div className="absolute h-[300px] w-[300px] rounded-full border border-primary/20 animate-pulse"></div>
               <div className="absolute h-[200px] w-[200px] rounded-full border border-primary/30 animate-pulse"></div>
@@ -84,6 +123,13 @@ const LandingPage: React.FC = () => {
                   <Smartphone size={24} className="text-primary-foreground" />
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
             </div>
           </div>
         </section>
@@ -124,8 +170,8 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* What is eSIM Section - Enhanced with more description */}
-        <section className="py-16 px-4 md:px-6 bg-secondary/50">
-          <div className="max-w-6xl mx-auto">
+        <section className=" rounded-md">
+          {/* <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">
               What is eSIM?
             </h2>
@@ -220,54 +266,55 @@ const LandingPage: React.FC = () => {
             </div>
 
             {/* Mobile-specific extra content */}
-            {isMobile && (
-              <div className="mt-10 p-6 bg-primary/10 rounded-lg border border-primary/20">
-                <h4 className="font-semibold text-center mb-4">
-                  Why eSIM for Mobile?
-                </h4>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary/20 p-2 rounded-full">
-                      <Smartphone size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <h5 className="font-medium">No Physical SIM Required</h5>
-                      <p className="text-sm text-muted-foreground">
-                        Free up space in your device and never worry about
-                        losing your SIM card again.
-                      </p>
-                    </div>
+          {isMobile && (
+            <div className="mt-10 hidden p-6 bg-primary/10 rounded-lg border border-primary/20">
+              <h4 className="font-semibold text-center mb-4">
+                Why eSIM for Mobile?
+              </h4>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <Smartphone size={20} className="text-primary" />
                   </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary/20 p-2 rounded-full">
-                      <Globe size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <h5 className="font-medium">Instant Global Coverage</h5>
-                      <p className="text-sm text-muted-foreground">
-                        Switch between carriers in seconds when traveling
-                        internationally.
-                      </p>
-                    </div>
+                  <div>
+                    <h5 className="font-medium">No Physical SIM Required</h5>
+                    <p className="text-sm text-muted-foreground">
+                      Free up space in your device and never worry about losing
+                      your SIM card again.
+                    </p>
                   </div>
+                </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="bg-primary/20 p-2 rounded-full">
-                      <ArrowRight size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <h5 className="font-medium">Remote Activation</h5>
-                      <p className="text-sm text-muted-foreground">
-                        Activate new plans from anywhere with just your phone
-                        and an internet connection.
-                      </p>
-                    </div>
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <Globe size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Instant Global Coverage</h5>
+                    <p className="text-sm text-muted-foreground">
+                      Switch between carriers in seconds when traveling
+                      internationally.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="bg-primary/20 p-2 rounded-full">
+                    <ArrowRight size={20} className="text-primary" />
+                  </div>
+                  <div>
+                    <h5 className="font-medium">Remote Activation</h5>
+                    <p className="text-sm text-muted-foreground">
+                      Activate new plans from anywhere with just your phone and
+                      an internet connection.
+                    </p>
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
+          {/* </div> */}
+          <ESIMSection />
         </section>
 
         {/* Benefits Section - Updated Card Design */}
@@ -285,9 +332,12 @@ const LandingPage: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                     <Globe size={32} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Global Pay-Per-Use Connectivity</h3>
+                  <h3 className="text-xl font-semibold">
+                    Global Pay-Per-Use Connectivity
+                  </h3>
                   <p className="text-muted-foreground">
-                   Smart billing, no changing eSIM, 180+ countries (Coming soon)
+                    Smart billing, no changing eSIM, 180+ countries (Coming
+                    soon)
                   </p>
                 </CardContent>
               </Card>
@@ -298,7 +348,9 @@ const LandingPage: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                     <IoIosSwitch size={32} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">Operater switch logic</h3>
+                  <h3 className="text-xl font-semibold">
+                    Operater switch logic
+                  </h3>
                   <p className="text-muted-foreground">
                     Seamless Effortless Travel Connectivity.
                   </p>
@@ -337,9 +389,7 @@ const LandingPage: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-2">
                     <Banknote size={32} className="text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">
-                    Buy regional data
-                  </h3>
+                  <h3 className="text-xl font-semibold">Buy regional data</h3>
                   <p className="text-muted-foreground">
                     Top up with USDC or fiat instantly via on-ramps.
                   </p>
@@ -348,7 +398,7 @@ const LandingPage: React.FC = () => {
             </div>
 
             {/* Mobile-specific wallet content */}
-            {isMobile && (
+            {/* {isMobile && (
               <div className="mt-12 p-6 bg-primary/10 rounded-lg border border-primary/20">
                 <h4 className="font-semibold text-center mb-4">
                   Manage With Your Wallet
@@ -394,7 +444,7 @@ const LandingPage: React.FC = () => {
                   </div>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </section>
 
@@ -564,8 +614,11 @@ const LandingPage: React.FC = () => {
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-sm">
                     <Mail className="h-4 w-4" />
-                    <a href="mailto:contact@gesim.xyz" className="hover:text-gray-300">
-                    contact@gesim.xyz
+                    <a
+                      href="mailto:contact@gesim.xyz"
+                      className="hover:text-gray-300"
+                    >
+                      contact@gesim.xyz
                     </a>
                   </li>
                   <li className="flex items-center gap-2 text-sm">
