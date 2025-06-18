@@ -1,4 +1,5 @@
 import { Check, X } from 'lucide-react';
+import { Smartphone, CreditCard, Globe, Zap, Shield } from 'lucide-react';
 
 interface ComparisonCardProps {
   title: string;
@@ -57,6 +58,7 @@ export const ComparisonCard = ({ title, type, features }: ComparisonCardProps) =
           );
         })}
       </ul>
+
     </div>
   );
 };

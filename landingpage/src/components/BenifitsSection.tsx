@@ -62,7 +62,7 @@ const BenefitsSection = () => {
   };
 
   return (
-    <section className="relative py-24 rounded-md px-4 overflow-hidden bg-slate-950 min-h-screen flex items-center">
+    <section className="relative pb-10 rounded-md px-4 overflow-hidden flex items-center">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1),transparent_70%)]" />

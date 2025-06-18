@@ -7,6 +7,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { IoIosSwitch } from "react-icons/io";
 import { FaTelegramPlane, FaTwitter } from "react-icons/fa";
 import { Check, Zap, Play } from "lucide-react";
+import { BsSim } from "react-icons/bs";
+
 
 import {
   ArrowRight,
@@ -51,41 +53,30 @@ const LandingPage: React.FC = () => {
     <>
       <TopMenu setIsModalOpen={setIsModalOpen} />
 
-      <div className="min-h-screen w-full overflow-x-hidden">
+      <div className="w-full overflow-x-hidden">
         {/* Hero Section */}
 
-        <section className="relative min-h-screen overflow-hidden ">
+        <section className="relative px-4 mt- w-full overflow-hidden ">
           {/* Video Background */}
-          <div className="absolute inset-0 z-0">
+          <div className="absolute left-0 right-0 inset-0 z-0">
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover opacity-20 rounded-md"
             >
               <source
-                src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761"
+                src="bg.mp4"
                 type="video/mp4"
               />
             </video>
             <div className="absolute inset-0"></div>
           </div>
 
-          {/* Animated Particles */}
-          <div className="absolute inset-0 z-10">
-            <div className="absolute top-20 left-20 w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            <div className="absolute top-40 right-32 w-3 h-3 bg-blue-400 rounded-full animate-bounce delay-300"></div>
-            <div className="absolute bottom-40 left-32 w-1.5 h-1.5 bg-blue-300 rounded-full animate-pulse delay-700"></div>
-            <div className="absolute top-32 left-1/2 w-2.5 h-2.5 bg-blue-500 rounded-full animate-bounce delay-500"></div>
-            <div className="absolute bottom-32 right-20 w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-1000"></div>
-          </div>
-
-          <div className="relative z-20  px- pt-20 pb-32 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="relative z-20 px-4 pt-20 pb-32 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 justify-items-center items-center">
             <div className="">
-              {/* Animated Logo/Badge */}
               
-
               {/* Animated Main Heading */}
               <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
                 {" "}
@@ -93,7 +84,7 @@ const LandingPage: React.FC = () => {
               </h1>
 
               {/* Animated Subtitle */}
-              <p className="text-xl md:text-xl text-slate-300 max-w-4xl mt-5 mx-auto leading-relaxed mb-12 animate-fade-in delay-1000">
+              <p className="text-xl md:text-lg text-slate-300 max-w-4xl mt-5 mx-auto leading-relaxed mb-12 animate-fade-in delay-1000">
               
                 Smart, borderless eSIM — connect globally, pay locally.
               </p>
@@ -115,14 +106,13 @@ const LandingPage: React.FC = () => {
 
               {/* 3D Animated Phone Mockup */}
              <div className="relative h-[400px] w-full flex items-center justify-center">
-              <div className="absolute inset-0 rounded-full bg-primary/5 animate-pulse"></div>
+              {/* <div className="absolute inset-0 rounded-full bg-primary/5 animate-pulse"></div> */}
               <div className="absolute h-[300px] w-[300px] rounded-full border border-primary/20 animate-pulse"></div>
               <div className="absolute h-[200px] w-[200px] rounded-full border border-primary/30 animate-pulse"></div>
               <div className="relative z-10 w-[180px] h-[280px] bg-gradient-to-br from-card/80 to-card/50 backdrop-blur-md border border-white/10 shadow-xl rounded-3xl flex items-center justify-center floating">
-                {/* <Globe size={80} className="text-primary" /> */}
                 <img src="/images/logo.png" className="w-24" alt="" />
                 <div className="absolute -bottom-3 -right-3 w-16 h-16 bg-primary rounded-full flex items-center justify-center">
-                  <Smartphone size={24} className="text-primary-foreground" />
+                  <BsSim size={24} className="text-primary-foreground" />
                 </div>
               </div>
             </div>
@@ -172,7 +162,7 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* What is eSIM Section - Enhanced with more description */}
-        <section className=" rounded-md">
+        <section className="rounded-md px-4">
           {/* <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">
               What is eSIM?
@@ -320,7 +310,7 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* Benefits Section - Updated Card Design */}
-        <section id="features" className="rounded-md py-16">
+        <section id="features" className="rounded-md">
           <div className="md:block hidden">
               <BenefitsSection />
           </div>
@@ -332,71 +322,31 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* Current Locations Section - Updated with better images */}
-        <section className="py-16 px-4 md:px-6 bg-secondary/50">
-          <div className="max-w-6xl mx-auto">
-            {/* <h2 className="text-3xl font-bold text-center mb-6">
-              Launching soon
-            </h2> */}
-            <h1 className="text-4xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
-           Launching Soon
-          </h1>
-            <p className="text-center text-muted-foreground mb-16 max-w-xl mx-auto">
-              Will be available soon in these locations, with many more to come.
-            </p>
+    <section className="pt-16 px-0 bg-secondary/50">
+  <div className="max-w-6xl mx-auto px-6">
+    <h1 className="text-4xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
+      Launching Soon
+    </h1>
+    <p className="text-center text-muted-foreground mb-6 max-w-xl mx-auto">
+      Will be available soon in these locations, with many more to come.
+    </p>
+  </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <Card className="glass-card overflow-hidden">
-                <div className="h-64 w-full overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
-                    alt="Dubai"
-                    className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src =
-                        "https://placehold.co/600x400/6E56CF/fff?text=Dubai";
-                    }}
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2">Dubai</h3>
-                  <p className="text-muted-foreground">
-                    Seamless connectivity across the United Arab Emirates,
-                    perfect for business travelers and tourists alike.
-                  </p>
-                </CardContent>
-              </Card>
+  {/* FULL-WIDTH IMAGE OUTSIDE CONTAINER */}
+    <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full mx-auto h-full object-cover rounded-md"
+            >
+              <source
+                src="under.mp4"
+                type="video/mp4"
+              />
+            </video>
+</section>
 
-              <Card className="glass-card overflow-hidden">
-                <div className="h-64 w-full overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
-                    alt="Singapore"
-                    className="w-full h-full object-cover hover:scale-105 transition-all duration-500"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src =
-                        "https://placehold.co/600x400/6E56CF/fff?text=Singapore";
-                    }}
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2">Singapore</h3>
-                  <p className="text-muted-foreground">
-                    Stay connected in one of Asia's most dynamic business and
-                    technology hubs.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* <div className="text-center mt-12">
-            <Button onClick={() => navigate("/plans")} className="px-8">
-              View All Plans <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div> */}
-          </div>
-        </section>
 
         {/* Final CTA Section */}
         <section className="py-20 px-4 md:px-6 relative">

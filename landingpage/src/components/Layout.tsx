@@ -43,7 +43,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         </div>
       )}
       
-      <main className={`flex-grow container mx-auto ${showGlobalNav ? 'pb-20' : 'pb-0'} pt-6 relative z-0`}>
+      <main className={`flex-grow container mx-auto ${showGlobalNav ? 'pb-20' : 'pb-0'} pt-1 relative z-0`}>
         {children}
       </main>
       

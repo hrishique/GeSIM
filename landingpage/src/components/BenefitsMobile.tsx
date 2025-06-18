@@ -22,7 +22,7 @@ import { IoIosSwitch } from "react-icons/io";
 const BenefitsMobile = () => {
   return (
     <div>
-       <div className="max-w-6xl mx-auto">
+       <div className="max-w-6xl px-4 mx-auto">
             <h2 className="text-3xl font-bold text-center mb-16">
               Benefits of GeSIM
             </h2>

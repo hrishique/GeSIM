@@ -10,8 +10,8 @@ export default function TopMenu({ setIsModalOpen }) {
   }
 
   return (
-    <nav className="select-none text-white px-6 py-2 bg-slate-950 rounded-full flex items-center justify-between w-full
-     sticky top-2 right-0 left-0 z-50">
+    <nav className="select-none text-white px-6 py-2 bg-[#0F1729] ounded-full flex items-center justify-between w-full
+     sticky top-0 right-0 left-0 z-50">
       {/* Logo */}
       <div className="flex items-end space-x- ">
        

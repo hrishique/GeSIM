@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* styles/globals.css or wherever your global styles are */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+
+
 @layer base {
   :root {
     --background: 222 47% 11%;

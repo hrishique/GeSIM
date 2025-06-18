@@ -18,7 +18,7 @@ const ESIMSection = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-md py-20 px-4">
+    <section className="rounded-md py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -59,7 +59,7 @@ const ESIMSection = () => {
         </div>
 
         {/* Visual Comparison */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 text-center">
             <h3 className="text-xl font-semibold text-slate-300 mb-6">Physical SIM</h3>
             <div className="w-32 h-20 mx-auto bg-slate-600 rounded-lg flex items-center justify-center mb-4">
@@ -84,7 +84,7 @@ const ESIMSection = () => {
               <div className="h-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded w-1/2 mx-auto"></div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
