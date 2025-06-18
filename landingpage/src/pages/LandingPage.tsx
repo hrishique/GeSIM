@@ -322,13 +322,13 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* Current Locations Section - Updated with better images */}
-    <section className="pt-16 px-0 bg-secondary/50">
+    <section className="pt-16 pb-5 px-0 bg-secondary/50">
   <div className="max-w-6xl mx-auto px-6">
     <h1 className="text-4xl text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
       Launching Soon
     </h1>
     <p className="text-center text-muted-foreground mb-6 max-w-xl mx-auto">
-      Will be available soon in these locations, with many more to come.
+      Will be available soon
     </p>
   </div>
 
@@ -338,7 +338,7 @@ const LandingPage: React.FC = () => {
               loop
               muted
               playsInline
-              className="w-full mx-auto h-full object-cover rounded-md"
+              className="w-1/2 mx-auto h-full object-cover rounded-md"
             >
               <source
                 src="under.mp4"
