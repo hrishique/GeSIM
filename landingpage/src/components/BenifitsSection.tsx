@@ -1,7 +1,48 @@
 import React from "react";
 import { Globe, ToggleRight, Shield, BadgeDollarSign } from "lucide-react";
+import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+
 
 const BenefitsSection = () => {
+
+    const cardsRef = useRef<HTMLDivElement | null>(null);
+
+// old
+ useEffect(() => {
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray(".benefit-card");
+
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 100 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 90%",
+            end: "bottom 30%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    }, cardsRef);
+
+    return () => ctx.revert();
+  }, []);
+
+
+
+
   const benefits = [
     {
       icon: Globe,
@@ -82,7 +123,7 @@ const BenefitsSection = () => {
         </div>
 
         {/* Central Network Container */}
-        <div
+        <div  
           className="relative flex justify-center items-center"
           style={{ height: "700px" }}
         >
@@ -156,9 +197,12 @@ const BenefitsSection = () => {
             </div>
           ))}
 
-          {/* Benefits Cards */}
+
+        <div ref={cardsRef}>
+            {/* Benefits Cards */}
           {benefits.map((benefit, index) => (
-            <div key={index} className={getBenefitStyle(benefit.position)}>
+             
+            <div key={index} className={`benefit-card ${getBenefitStyle(benefit.position)}`}>
               <div className="group relative w-80 max-w-sm">
                 {/* Connection Point */}
                 <div className="absolute top-8 left-8 w-3 h-3 bg-indigo-400 rounded-full animate-pulse z-10"></div>
@@ -190,6 +234,8 @@ const BenefitsSection = () => {
               </div>
             </div>
           ))}
+        </div>
+        
 
           {/* Additional Electrical Particles */}
           <div

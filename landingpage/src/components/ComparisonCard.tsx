@@ -1,23 +1,26 @@
 import { Check, X } from 'lucide-react';
 import { Smartphone, CreditCard, Globe, Zap, Shield } from 'lucide-react';
+import { RefObject } from 'react'
 
 interface ComparisonCardProps {
   title: string;
   type: 'traditional' | 'esim';
   features: Array<string | { text: string; icon: any }>;
-}
+  leftRef: RefObject<HTMLDivElement>;
+  rightRef: RefObject<HTMLDivElement>;}
 
-export const ComparisonCard = ({ title, type, features }: ComparisonCardProps) => {
+export const ComparisonCard = ({ title, type, features,  leftRef, rightRef }: ComparisonCardProps) => {
   const isESIM = type === 'esim';
   
   return (
     <div className={`
-      relative p-8 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl
+      relative py-8 grid-cols-4 px-4 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl
       ${isESIM 
         ? 'bg-gradient-to-br from-purple-800/20 to-pink-800/20 border border-purple-500/30 hover:border-purple-400/50' 
-        : 'bg-slate-800/50 border border-slate-700/50 hover:border-slate-600/70'
+        : 'right-card bg-slate-800/50 border border-slate-700/50 hover:border-slate-600/70'
       }
-    `}>
+
+    `} ref={isESIM ? rightRef : leftRef}   >
       {isESIM && (
         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
           <span className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium">
