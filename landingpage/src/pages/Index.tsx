@@ -5,9 +5,9 @@ import Layout from '../components/Layout';
 
 const Index = () => {
   return (
-    <Layout>
+    // <Layout>
       <LandingPage />
-    </Layout>
+    // </Layout>
   );
 };
 

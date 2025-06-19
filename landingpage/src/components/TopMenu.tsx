@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react"; // or use Heroicons, FontAwesome, etc.
+import { useNavigate } from "react-router-dom";
 
 export default function TopMenu({ setIsModalOpen }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate()
 
   function handleClick() {
     setMenuOpen(false);
@@ -15,7 +17,7 @@ export default function TopMenu({ setIsModalOpen }) {
      sticky top-0 right-0 left-0 z-50"
     >
       {/* Logo */}
-      <div className="flex items-end space-x- ">
+      <div onClick={()=> navigate("/")} className="flex items-end cursor-pointer">
         <img src="/images/logo.png" width={50} alt="" />
         <span className="text-3xl relative bottom-1 font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent leading-tight">
           eSIM
@@ -46,6 +48,13 @@ export default function TopMenu({ setIsModalOpen }) {
           Roadmap
         </a>
         <a
+          onClick={()=> navigate("/blog")}
+          target="_blank"
+          className="hover:text-gray-300 cursor-pointer text-gray-400 transition"
+        >
+          Blog
+        </a>
+        <a
           href="#contact"
           className="hover:text-gray-300 text-gray-400 transition"
         >
@@ -55,13 +64,6 @@ export default function TopMenu({ setIsModalOpen }) {
 
       {/* CTA Button */}
       <div>
-        {/* <a
-        onClick={handleClick}
-        className="hidden cursor-pointer md:inline bg-green-500 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-green-600 transition"
-      >
-        */}
-        {/* </a> */}
-
         <button
           onClick={handleClick}
           className="group uppercase hidden hover:bg-purple-700 border-[1px] border-solid border-gray-00 px-4 text-purple-500 hover:text-white py-2 rounded-xl font-medium text-sm transition-all duration-300 md:flex items-center gap-2 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
@@ -115,12 +117,13 @@ export default function TopMenu({ setIsModalOpen }) {
           >
             Contact
           </a>
-          <button
-            className="bg-green-500 text-white w-auto text-sm font-medium px-4 py-2 rounded-full hover:bg-green-600 transition"
-            onClick={handleClick}
-          >
-            Get Early Access
-          </button>
+         <button
+          onClick={handleClick}
+          className="group uppercase hidden hover:bg-purple-700 border-[1px] border-solid border-gray-00 px-4 text-purple-500 hover:text-white py-2 rounded-xl font-medium text-sm transition-all duration-300 md:flex items-center gap-2 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
+        >
+          Get Early Access
+          {/* <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" /> */}
+        </button>
         </div>
       )}
     </nav>

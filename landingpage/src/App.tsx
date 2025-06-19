@@ -13,6 +13,8 @@ import Settings from "./pages/Settings";
 import ESims from "./pages/ESims";
 import Wallet from "./pages/Wallet";
 import Admin from "./pages/Admin";
+import Blog from "./pages/Blog";
+import Layout from "./components/Layout";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route element={<Layout />}>         
           <Route path="/" element={<Index />} />
           <Route path="/connect-wallet" element={<WalletConnect />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -31,7 +34,10 @@ const App = () => (
           <Route path="/esims" element={<ESims />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="*" element={<NotFound />} />
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
