@@ -52,13 +52,13 @@ const LandingPage: React.FC = () => {
   return (
     <>
 
-      <div>
+      <div className="w-full overflow-x-hidden">
         {/* Hero Section */}
 
               <TopMenu setIsModalOpen={setIsModalOpen} />
 
 
-        <section className="relative bottom-20 min-h-screen my-auto px-4 py-10 mt- w-full overflow-hidden ">
+        <section className="relative bottom-20 min-h-screen my-auto px-4 py-10 w-full overflow-hidden ">
           {/* Video Background */}
           <div className="absolute left-0 right-0 inset-0 z-0">
             <video
