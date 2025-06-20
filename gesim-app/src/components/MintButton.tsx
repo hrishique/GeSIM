@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Zap, Loader2 } from 'lucide-react';
 import MintSuccessModal from './MintSuccessModal';
 
-const MintButton = () => {
+const MintButton = ({isMint}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMinting, setIsMinting] = useState(false);
 
@@ -15,6 +15,8 @@ const MintButton = () => {
     
     setIsMinting(false);
     setIsModalOpen(true);
+    localStorage.setItem("GeSim_Minted", 'true');
+    isMint(true)
   };
 
   return (
