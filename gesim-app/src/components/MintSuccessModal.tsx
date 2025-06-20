@@ -15,7 +15,7 @@ interface MintSuccessModalProps {
   onClose: () => void;
 }
 
-const MintSuccessModal = ({ isOpen, onClose }: MintSuccessModalProps) => {
+const MintSuccessModal = ({ isOpen, onClose, isMint }: MintSuccessModalProps) => {
   const { toast } = useToast();
 
   // Generate a mock transaction hash and eSIM ID
@@ -29,6 +29,13 @@ const MintSuccessModal = ({ isOpen, onClose }: MintSuccessModalProps) => {
       description: `${label} copied to clipboard`,
     });
   };
+
+  const handleDoneBtn = ()=> {
+
+    isMint(true)
+    onClose()
+
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -114,7 +121,7 @@ const MintSuccessModal = ({ isOpen, onClose }: MintSuccessModalProps) => {
           {/* Action Buttons */}
           <div className="flex gap-3 mt-6">
             <Button
-              onClick={onClose}
+              onClick={handleDoneBtn}
               className="flex-1 bg-purple-600 hover:bg-purple-700"
             >
               Done

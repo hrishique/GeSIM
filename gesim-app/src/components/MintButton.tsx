@@ -16,7 +16,7 @@ const MintButton = ({isMint}) => {
     setIsMinting(false);
     setIsModalOpen(true);
     localStorage.setItem("GeSim_Minted", 'true');
-    isMint(true)
+    // isMint(true)
   };
 
   return (
@@ -41,7 +41,8 @@ const MintButton = ({isMint}) => {
       
       <MintSuccessModal 
         isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+        onClose={() =>{ setIsModalOpen(false); isMint(false)}}
+        isMint={isMint} 
       />
     </>
   );
