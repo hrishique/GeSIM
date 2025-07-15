@@ -44,7 +44,7 @@ const Index = () => {
         <div className="space-y-6">
           <h2 className="text-2xl md:text-4xl font-bold text-white tracking-wide">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
-              Under Construction, but not for long.
+              UNDER CONSTRUCTION <br /> but not for long.
             </span>
           </h2>
           
@@ -79,14 +79,14 @@ const Index = () => {
 
         {/* Progress Bar */}
         <div className="mt-8 w-80 max-w-full">
-          <div className="bg-gray-800 rounded-full h-2 overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full animate-pulse" style={{ width: '67%' }} />
-          </div>
-          <div className="text-xs text-gray-400 mt-2 font-mono">67% COMPLETE</div>
+          {/* <div className="bg-gray-800 rounded-full h-2 overflow-hidden"> */}
+            {/* <div className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full animate-pulse" style={{ width: '67%' }} /> */}
+          {/* </div> */}
+          {/* <div className="text-xs text-gray-400 mt-2 font-mono">67% COMPLETE</div> */}
         </div>
 
         {/* Coming Soon Badge */}
-        <div className="mt-12">
+        <div className="mt-5">
           <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600/20 to-purple-600/20 border border-purple-500/30 rounded-md backdrop-blur-sm">
             {/* <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse mr-3" /> */}
             <span className="text-white font-semibold tracking-wide">LAUNCHING SOON</span>
