@@ -22,6 +22,8 @@ import {
   Radio,
   Network,
   BookOpen,
+  Twitter,
+  Send,
 } from "lucide-react"
 import Image from "next/image"
 
@@ -187,7 +189,7 @@ export default function GeSIMLanding() {
               <div className="flex flex-col sm:flex-row gap-6 mb-12">
                 <Button
                   size="lg"
-                  onClick={() => window.open('https://t.me/charchit_web3', '_blank')}
+                  onClick={scrollToWaitlist}
                   className={`${isDark ? "bg-slate-800 hover:bg-slate-700 text-white" : "bg-slate-900 hover:bg-slate-800 text-white"} px-12 py-4 text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3`}
                 >
                   <ArrowRight className="w-5 h-5" />
@@ -342,7 +344,7 @@ export default function GeSIMLanding() {
                 <div className={`text-3xl font-black ${isDark ? "text-white" : "text-slate-900"}`}>3+
             </div>
               </div>
-              <div className={`text-center ${isDark ? "text-slate-400" : "text-slate-600"} font-medium`}>Integration Partners</div>
+              <div className={`text-center ${isDark ? "text-slate-400" : "text-slate-600"} font-medium`}>Connectivity Partners</div>
             </div>
             <div
               className={`p-10 rounded-2xl backdrop-blur-sm ${isDark ? "bg-slate-800/30 border-slate-700/50" : "bg-white/70 border-slate-200"} border shadow-lg`}
@@ -441,7 +443,7 @@ export default function GeSIMLanding() {
                 <h3 className={`text-xl font-bold ${isDark ? "text-white" : "text-slate-900"}`}>Global Pay-Per-Use Connectivity</h3>
               </div>
               <p className={`${isDark ? "text-slate-400" : "text-slate-600"} leading-relaxed`}>
-                Smart billing, no changing eSIM, 150+ countries
+                Smart billing, Single eSIM, 150+ countries
               </p>
             </div>
 
@@ -457,7 +459,7 @@ export default function GeSIMLanding() {
                 <h3 className={`text-xl font-bold ${isDark ? "text-white" : "text-slate-900"}`}>Operator Switch Logic</h3>
               </div>
               <p className={`${isDark ? "text-slate-400" : "text-slate-600"} leading-relaxed`}>
-                Seamless Effortless Travel Connectivity
+                Seamless & Effortless Travel Connectivity
               </p>
             </div>
 
@@ -492,7 +494,7 @@ export default function GeSIMLanding() {
           <p
             className={`text-xl mb-12 max-w-3xl mx-auto leading-relaxed ${isDark ? "text-slate-400" : "text-slate-600"} flex items-baseline justify-center gap-2`}
           >
-            <Globe className="w-5 h-5 flex-shrink-0 translate-y-0.5" />
+            {/* <Globe className="w-5 h-5 flex-shrink-0 translate-y-0.5" /> */}
             Empower Global Connectivity, Local Access, and Micro-Billing Standardization with One Sleek Mobile App
           </p>
 
@@ -516,7 +518,7 @@ export default function GeSIMLanding() {
                     className={`text-sm ${isDark ? "text-slate-400" : "text-slate-600"} mb-4 flex items-baseline justify-center gap-2`}
                   >
                     <Zap className="w-4 h-4 translate-y-0.5" />
-                    Coming Q4 2025
+                    Coming Q3 2025
                   </p>
                   <div
                     onClick={scrollToWaitlist}
@@ -580,7 +582,7 @@ export default function GeSIMLanding() {
 
       {/* Footer */}
       <footer
-        className={`py-16 px-6 ${isDark ? "bg-slate-900 border-t border-slate-800" : "bg-slate-50 border-t border-slate-200"}`}
+        className={`py-16 px-6 ${isDark ? "bg-slate-900 border-t border-slate-800" : "bg-slate-50 border-t border-slate-200"} relative`}
       >
         <div className="container mx-auto text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
@@ -592,8 +594,30 @@ export default function GeSIMLanding() {
           <p
             className={`${isDark ? "text-slate-500" : "text-slate-600"} text-sm flex items-baseline justify-center gap-2`}
           >
-           © 2025 GeSIM. Revolutionizing global connectivity with blockchain technology.
+            © 2025 GeSIM. Revolutionizing global connectivity with blockchain technology.
           </p>
+        </div>
+        <div className="flex items-center gap-3 absolute right-12 top-1/2 transform -translate-y-1/2">
+          <button
+            onClick={() => window.open('https://x.com/gesimxyz', '_blank')}
+            className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
+              isDark 
+                ? "bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white" 
+                : "bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            <Twitter className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => window.open('https://t.me/gesimxyz', '_blank')}
+            className={`p-2 rounded-full transition-all duration-300 hover:scale-110 ${
+              isDark 
+                ? "bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white" 
+                : "bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900"
+            }`}
+          >
+            <Send className="w-5 h-5" />
+          </button>
         </div>
       </footer>
     </div>
