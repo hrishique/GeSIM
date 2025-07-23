@@ -14,7 +14,9 @@ import {
   Gift,
   Copy,
   ExternalLink,
-  Smartphone, Trash2
+  Smartphone, 
+  Trash2,
+  User
 } from "lucide-react";
 
 import { Zap, Loader2 } from "lucide-react";
@@ -23,11 +25,15 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import MintButton from "@/components/MintButton";
 import { useToast } from "@/hooks/use-toast";
+import { usePrivy } from '@privy-io/react-auth';
 
 const ESims: React.FC = () => {
   const navigate = useNavigate();
   const [isMint, setIsMint] = useState("false");
   const [isRemoving, setIsRemoving] = useState(false);
+  
+  // Privy authentication
+  const { ready, authenticated, user, login } = usePrivy();
 
   useEffect(() => {
     const mintStatus = localStorage.getItem("GeSim_Minted");
@@ -59,6 +65,19 @@ const ESims: React.FC = () => {
      setIsRemoving(false)
   };
 
+  // Show loading state while Privy is initializing
+  if (!ready) {
+    return (
+      <Layout>
+        <div className="max-w-lg mx-auto fade-in">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div>Loading...</div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="max-w-lg mx-auto fade-in">
@@ -87,7 +106,26 @@ const ESims: React.FC = () => {
                 </div>
               </CardContent>
               <CardFooter className="flex justify-center">
-                <MintButton isMint={setIsMint} />
+                {authenticated ? (
+                  <MintButton isMint={setIsMint} />
+                ) : (
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="flex flex-col items-center text-center mb-4">
+                      <User size={48} className="text-muted-foreground mb-4" />
+                      <h3 className="text-lg font-semibold mb-2">Login Required</h3>
+                      <p className="text-muted-foreground text-sm">
+                        Please login to mint your GeSIM and start your Web3 connectivity journey.
+                      </p>
+                    </div>
+                    <Button
+                      onClick={() => login()}
+                      className="bg-purple-600 text-white px-8 py-4 text-lg font-medium rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                    >
+                      <Zap className="mr-2 h-5 w-5" />
+                      Login to Mint GeSIM
+                    </Button>
+                  </div>
+                )}
               </CardFooter>
             </Card>
           ) : (

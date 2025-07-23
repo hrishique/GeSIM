@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@/components/Layout';
 import PlanCard from '@/components/PlanCard';
+import PlanModal from '@/components/PlanModal';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import CardSkeleton from '@/components/CardSkeleton';
 
 type Plans = {
-
-  id:string;
+  id: string;
   plan_name: string;
   plan_type: number;
   price: number;
@@ -18,7 +18,6 @@ type Plans = {
   description: string;
   createdAt: string;
   updatedAt: string;
-  
 }
 
 const Plans: React.FC = () => {
@@ -26,6 +25,10 @@ const Plans: React.FC = () => {
   const [plans, setPlans] = useState<Plans[]>();
   const [loading, setLoading] = useState<boolean>(true);
   const [errors, setErrors] = useState<string>("")
+  
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<Plans | null>(null);
 
   
   // Mock data
@@ -90,26 +93,31 @@ const Plans: React.FC = () => {
 
 
   useEffect(() => {
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axios.get<Plans[]>('https://gesim-r6h2.onrender.com/api/admin/plans');
-      setPlans(response.data);
-      setLoading(false)
-    } catch (err) {
-      setErrors('Failed to fetch users');
-    } finally {
-      setLoading(false);
-    }
-  };
-  fetchUsers()
-
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get<Plans[]>('https://gesim-r6h2.onrender.com/api/admin/plans');
+        setPlans(response.data);
+        setLoading(false)
+      } catch (err) {
+        setErrors('Failed to fetch users');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsers()
   }, [])
   
   const handleSelectPlan = (planId: string) => {
-    console.log(`Selected plan: ${planId}`);
-    // In a real app, this would navigate to a purchase or details page
-    // navigate(`/plan/${planId}`);
+    const plan = plans?.find(p => p.id === planId);
+    if (plan) {
+      setSelectedPlan(plan);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedPlan(null);
   };
   
   return (
@@ -134,7 +142,11 @@ const Plans: React.FC = () => {
             {plans
               ?.filter(plan => plan.plan_type === 101)
               .map(plan => (
-                <PlanCard key={plan.id} {...plan} onClick={handleSelectPlan} />
+                <PlanCard 
+                  key={plan.id} 
+                  {...plan} 
+                  onClick={handleSelectPlan} 
+                />
               ))}
           </TabsContent>
           
@@ -142,7 +154,11 @@ const Plans: React.FC = () => {
             { plans
               ?.filter(plan =>  plan.plan_type === 102)
               .map(plan => (
-                <PlanCard key={plan.id} {...plan} onClick={handleSelectPlan} />
+                <PlanCard 
+                  key={plan.id} 
+                  {...plan} 
+                  onClick={handleSelectPlan} 
+                />
               ))}
           </TabsContent>
           
@@ -156,6 +172,13 @@ const Plans: React.FC = () => {
 }
 
         </Tabs>
+
+        {/* Plan Modal */}
+        <PlanModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          plan={selectedPlan}
+        />
       </div>
     </Layout>
   );

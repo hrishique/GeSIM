@@ -5,7 +5,7 @@ type Props = {
   setSubmitKyc: (data: string) => void;
 };
 
-const Kyc: React.FC = ({ setSubmitKyc }) => {
+const Kyc: React.FC<Props> = ({ setSubmitKyc }) => {
   const [frontPreview, setFrontPreview] = useState<string | null>(null);
   const [backPreview, setBackPreview] = useState<string | null>(null);
 
@@ -23,7 +23,7 @@ const Kyc: React.FC = ({ setSubmitKyc }) => {
 
   const handleSubmit = () => {
     console.log("Submitted KYC with:", { frontPreview, backPreview });
-    setSubmitKyc(true); // Mark KYC as done
+    setSubmitKyc("true"); // Mark KYC as done
     localStorage.setItem("kycSubmitted", "true");
   };
 

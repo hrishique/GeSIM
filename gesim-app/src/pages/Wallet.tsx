@@ -4,12 +4,17 @@ import Layout from '@/components/Layout';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ArrowUp, ArrowDown, Plus } from 'lucide-react';
+import { ArrowUp, ArrowDown, Plus, User, Wallet } from 'lucide-react';
 import eth from '/ethereum.png'
+import { usePrivy, useWallets } from '@privy-io/react-auth';
 
-const Wallet: React.FC = () => {
-  // Mock data for wallet and transactions
-  const walletBalance = {
+const WalletPage: React.FC = () => {
+  // Privy authentication and wallet data
+  const { ready, authenticated, user, login } = usePrivy();
+  const { wallets, ready: walletsReady } = useWallets();
+
+  // Mock data for when wallet is not available or for transactions
+  const mockWalletBalance = {
     usdc: 125.75,
     eth: 0.042,
   };
@@ -49,6 +54,60 @@ const Wallet: React.FC = () => {
     },
   ];
 
+  // Get wallet info for display
+  const getWalletInfo = () => {
+    if (!walletsReady || wallets.length === 0) return null;
+    const wallet = wallets[0]; // Most users have 1 wallet
+    return {
+      address: wallet.address,
+      type: wallet.walletClientType,
+      shortAddress: `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
+    };
+  };
+
+  const walletInfo = getWalletInfo();
+
+  // Show loading state while Privy is initializing
+  if (!ready) {
+    return (
+      <Layout>
+        <div className="max-w-lg mx-auto fade-in">
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div>Loading...</div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Show login prompt if not authenticated
+  if (!authenticated) {
+    return (
+      <Layout>
+        <div className="max-w-lg mx-auto fade-in">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold">Wallet</h1>
+            <p className="text-muted-foreground">Manage your crypto balance</p>
+          </div>
+          
+          <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
+            <Wallet size={64} className="text-muted-foreground mb-6" />
+            <h2 className="text-xl font-semibold mb-4">Connect Your Wallet</h2>
+            <p className="text-muted-foreground mb-6 max-w-md">
+              Please connect your wallet to view your balance, manage transactions, and access all wallet features.
+            </p>
+            <Button
+              onClick={() => login()}
+              className="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+            >
+              Connect Wallet
+            </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="max-w-lg mx-auto fade-in">
@@ -61,7 +120,9 @@ const Wallet: React.FC = () => {
           <Card>
             <CardHeader className="pb-2">
               <CardTitle>Balance</CardTitle>
-              <CardDescription>Address : adhbuavdcuygweuycbkjnd45uhvdjhc</CardDescription>
+              <CardDescription>
+                Address: {walletInfo ? walletInfo.address : 'No wallet connected'}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-2">
@@ -73,7 +134,7 @@ const Wallet: React.FC = () => {
                     <span>USDC</span>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold">{walletBalance.usdc.toFixed(2)} USDC</p>
+                    <p className="font-semibold">{mockWalletBalance.usdc.toFixed(2)} USDC</p>
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
@@ -84,7 +145,7 @@ const Wallet: React.FC = () => {
                     <span>Ethereum</span>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold">{walletBalance.eth.toFixed(4)} ETH</p>
+                    <p className="font-semibold">{mockWalletBalance.eth.toFixed(4)} ETH</p>
                   </div>
                 </div>
               </div>
@@ -219,4 +280,4 @@ const Wallet: React.FC = () => {
   );
 };
 
-export default Wallet;
+export default WalletPage;

@@ -13,6 +13,7 @@ import { useToast } from '@/hooks/use-toast';
 interface MintSuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
+  isMint: (value: any) => void;
 }
 
 const MintSuccessModal = ({ isOpen, onClose, isMint }: MintSuccessModalProps) => {

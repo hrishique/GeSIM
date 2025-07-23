@@ -19,6 +19,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { TbCreditCardPay } from "react-icons/tb";
 import { FaUser } from "react-icons/fa";
 import clsx from "clsx";
+import { UserPill } from '@privy-io/react-auth/ui';
+import { useWallets } from '@privy-io/react-auth';
 
 type UserInfo = {
   name: string | null;
@@ -27,12 +29,50 @@ type UserInfo = {
   photo: string | null;
 };
 
+// Typewriter Effect Component
+const TypewriterEffect = ({ text, speed = 100 }: { text: string; speed?: number }) => {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, speed);
+
+      return () => clearTimeout(timeout);
+    } else {
+      // Reset animation after a pause
+      const resetTimeout = setTimeout(() => {
+        setDisplayText("");
+        setCurrentIndex(0);
+      }, 3000);
+
+      return () => clearTimeout(resetTimeout);
+    }
+  }, [currentIndex, text, speed]);
+
+  return (
+    <span className="relative">
+      {displayText}
+      <motion.span
+        className="inline-block w-0.5 h-4 bg-emerald-500 ml-1"
+        animate={{ opacity: [1, 0] }}
+        transition={{ duration: 0.8, repeat: Infinity }}
+      />
+    </span>
+  );
+};
+
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<UserInfo | null>(null);
- const [isOpen, setIsOpen] = useState<boolean>(false);
-const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedPlan, setSelectedPlan] = useState<string>("");
 
+  // Privy wallets for displaying wallet address
+  const { wallets, ready: walletsReady } = useWallets();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -53,6 +93,13 @@ const [selectedPlan, setSelectedPlan] = useState<string>("");
 
     return () => unsubscribe();
   }, []);
+
+  // Get wallet address from Privy
+  const getWalletAddress = () => {
+    if (!walletsReady || wallets.length === 0) return "No wallet connected";
+    const wallet = wallets[0]; // Most users have 1 wallet
+    return `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`;
+  };
 
   // Mock data
   const userData = {
@@ -85,7 +132,7 @@ const [selectedPlan, setSelectedPlan] = useState<string>("");
             <h1 className="text-2xl font-bold">Hey, {user?.name || "User"}</h1>
             <div className="flex items-center mt-1">
               <div className="text-xs text-muted-foreground">
-                {user?.email || "2Ych8hOPtr49332AKLHils"}
+                {getWalletAddress()}
               </div>
               {userData.kycVerified && (
                 <div className="flex items-center ml-2 text-xs text-primary">
@@ -103,6 +150,8 @@ const [selectedPlan, setSelectedPlan] = useState<string>("");
               className="rounded-full w-9 h-9 object-cover border border-border"
             />
           </Button>
+              {/* <UserPill /> */}
+
         </div>
 
         <section className="mb-6">
@@ -123,9 +172,24 @@ const [selectedPlan, setSelectedPlan] = useState<string>("");
                 </div>
                 <div>
                   <h3 className="font-medium">Active Pay as you go</h3>
-                  <p className="text-xs text-emerald-500 font-semibold text-muted-foreground">
-                    Coming Soon!
-                  </p>
+                  <motion.p 
+                    className="text-xs text-emerald-500 font-semibold"
+                    animate={{ 
+                      scale: [1, 1.05, 1],
+                      textShadow: [
+                        "0px 0px 0px rgba(16, 185, 129, 0)",
+                        "0px 0px 10px rgba(16, 185, 129, 0.8)",
+                        "0px 0px 0px rgba(16, 185, 129, 0)"
+                      ]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    <TypewriterEffect text="Coming Soon!" speed={150} />
+                  </motion.p>
                 </div>
               </div>
               {/* <Button variant="ghost" size="icon">

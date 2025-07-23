@@ -6,38 +6,63 @@ import { ArrowLeft } from 'lucide-react';
 import { IoLogoApple } from "react-icons/io5";
 import { LuWalletCards } from "react-icons/lu";
 import privy from '/privy.png'
-import { signInWithPopup } from 'firebase/auth';
-import { auth, provider } from '../firebase.ts';
+// import { signInWithPopup } from 'firebase/auth';
+// import { auth, provider } from '../firebase.ts';
 import { boolean } from 'zod';
+import { usePrivy } from '@privy-io/react-auth';
 
 type Props = {
   setOpenLogin : (data: boolean)=> void
 }
 
-const WalletConnect: React.FC = ({setOpenLogin}) => {
+const WalletConnect: React.FC<Props> = ({setOpenLogin}) => {
   const navigate = useNavigate();
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   
+  // Privy authentication
+  const { ready, authenticated, user, login, logout } = usePrivy();
 
+  // Comment out Firebase login logic
+  // const handleLogin = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       setOpenLogin(false)
+  //       console.log('User Info:', user);
+
+  //       // Save user in state or localStorage if needed
+  //     })
+  //     .catch((error) => {
+  //       console.error('Login error:', error);
+  //     });
+  // };
+
+  // New Privy login logic
   const handleLogin = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        setOpenLogin(false)
-        console.log('User Info:', user);
-
-        // Save user in state or localStorage if needed
-      })
-      .catch((error) => {
-        console.error('Login error:', error);
-      });
+    login();
+    setOpenLogin(false);
   };
-  
 
   const handleSkip = () => {
      setOpenLogin(false)
      navigate("/")
   }
+
+  // Show loading state while Privy is initializing
+  if (!ready) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  // If user is already authenticated, close the login modal
+  if (authenticated) {
+    setOpenLogin(false);
+    return null;
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 fade-in">
       <div className="w-full max-w-md">
@@ -63,9 +88,10 @@ const WalletConnect: React.FC = ({setOpenLogin}) => {
 
         </div>
 
+        {/* Updated login button with Privy */}
         <button onClick={handleLogin} className="flex items-center justify-start w-full border border-gray-300 rounded-lg px-4 py-4 mb-3 hover:bg-gray-100">
           <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="h-5 w-5 mr-3" />
-          <span className="text-sm font-medium text-gray-700">Sign in with Google</span>
+          <span className="text-sm font-medium text-gray-700">Sign in with Privy</span>
         </button>
 
         {/* <button className="flex items-center justify-start w-full border border-gray-300 rounded-lg px-4 py-2 mb-3 hover:bg-gray-100">
@@ -84,21 +110,15 @@ const WalletConnect: React.FC = ({setOpenLogin}) => {
         {/* <a href="#" className="text-sm text-indigo-600 hover:underline mb-6 block">I have a passkey</a> */}
 
         <button onClick={() => handleSkip()} className='font-semibold py-2 px-2 w-20 text-center text-emerald-500 cursor-pointer hover:bg-emerald-100 hover:rounded-md hover:px-2 hover:py-2'>Skip</button>
-        <p className="text-sm text-gray-500 mt-6">
-          Protected by{' '}
-          <span className="inline-flex items-center gap-1 font-semibold text-gray-700">
-            <span className="w-0 h-2 rounded-full inline-block"></span>   <img src={privy}  alt="" className="h-5" />
-          </span>
         
-        </p>
+        <div className="text-xs text-gray-600 mt-4 leading-relaxed">
+          By clicking continue, you acknowledge that you have read and agree to Privy's{" "}
+          <a href="#" className="text-indigo-600 hover:underline">Terms of Service</a> and{" "}
+          <a href="#" className="text-indigo-600 hover:underline">Privacy Policy</a>.
+        </div>
       </div>
     </div>
-        
-        <div className="mt-8 text-xs text-center text-muted-foreground">
-          By connecting your wallet, you agree to our
-          <br />
-          <a href="#" className="text-primary hover:underline">Terms of Service</a> and <a href="#" className="text-primary hover:underline">Privacy Policy</a>
-        </div>
+
       </div>
     </div>
   );
